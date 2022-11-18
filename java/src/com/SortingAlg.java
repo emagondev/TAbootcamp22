@@ -4,7 +4,7 @@
 package com;
 
 /**
- * @author em4go
+ * 
  *
  */
 public class SortingAlg {
