@@ -38,7 +38,7 @@ public class SortingAlg {
 		
 		int halfLength = arrLength/2;
 		int[] arr1 = new int[halfLength];
-		int arr2[] = new int[arrLength - halfLength];
+		int[] arr2 = new int[arrLength - halfLength];
 		
 		for (int i=0; i < halfLength; i++) {
 			arr1[i] = array[i];
