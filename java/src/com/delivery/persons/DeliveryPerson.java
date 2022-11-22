@@ -12,8 +12,7 @@ public class DeliveryPerson extends Person {
 	private Orders orderlist;
 
 	public DeliveryPerson(String firstName, String lastName, long phone, long wallet, String state,
-			String locationOrigin, String locationDestination,
-			/* ArrayList<PackageToDeliver> packageList */ Orders orderlist, int deliverId) {
+			String locationOrigin, String locationDestination, Orders orderlist, int deliverId) {
 		super(firstName, lastName, phone, wallet);
 		setState(state);
 		setLocationOrigin(locationOrigin);
