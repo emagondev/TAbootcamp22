@@ -112,9 +112,9 @@ public class DeliveryPerson extends Person{
 	}
 
 	public String getOrderData() {
-		return "This is "+ this.orderlist.getPackageList().get(0).getItemName() +
-				"and it weights "+ this.orderlist.getPackageList().get(0).getWeight() + "kgs" +
-				"contact "+ this.orderlist.getPackageList().get(0).getClientPhone() + " when delivered";
+		return "Package content: "+ this.orderlist.getPackageList().get(0).getItemName() +
+				"\nIt weights: "+ this.orderlist.getPackageList().get(0).getWeight() + "kgs \n" +
+				"Client contact "+ this.orderlist.getPackageList().get(0).getClientPhone();
 		
 	}
 	
