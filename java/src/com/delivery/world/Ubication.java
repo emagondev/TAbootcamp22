@@ -1,10 +1,10 @@
 package com.delivery.world;
 //import java.lang.Math.*;
 
-public class location {
+public class Ubication {
 	private double x;
 	private double y;
-	public location(double x, double y) {
+	public Ubication(double x, double y) {
 		// TODO Auto-generated constructor stub
 	}
 	public double getX() {

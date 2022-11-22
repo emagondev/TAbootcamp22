@@ -6,12 +6,12 @@ public class Person {
 	private String lastName;
 	private long phone;
 	private long wallet;
-	
+
 	public Person() {
-		
+
 	}
-	
-	public Person (String firstName, String lastName, long phone, long wallet) {
+
+	public Person(String firstName, String lastName, long phone, long wallet) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phone = phone;
@@ -49,15 +49,10 @@ public class Person {
 	public void setWallet(long wallet) {
 		this.wallet = wallet;
 	}
-	
-//	@Override
-//	public String toString() {
-//		return String.format("[%s] %s, %i, %f", state, locationOrigin, locationDestination, orderlist, deliverId);
-//	}
-	
+
 	@Override
 	public String toString() {
 		return String.format(this.firstName, this.lastName, this.phone, this.wallet);
 	}
-	
+
 }

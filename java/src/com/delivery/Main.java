@@ -1,6 +1,5 @@
 package com.delivery;
 
-
 //import com.delivery.persons.Client;
 
 public class Main {
@@ -9,7 +8,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		DeliveryOp delivery = new DeliveryOp();
 		delivery.oneDeliver();
-		
+
 	}
 
 }
