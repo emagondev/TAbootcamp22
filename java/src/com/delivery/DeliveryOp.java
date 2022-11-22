@@ -21,7 +21,7 @@ public class DeliveryOp extends Main {
 	
 	public void oneDeliver() {
 		System.out.println("START--- The delivery is now at " + deliveryJ.getLocationOrigin());
-		int price = 200;
+		int price = 500;
 		
 		deliveryJ.getOrderlist().addOrder(packageOfClientA);
 		currentTime.whatTime();
@@ -37,7 +37,8 @@ public class DeliveryOp extends Main {
 			deliveryJ.setLocationOrigin(deliveryJ.getLocationDestination());
 			clientA.setWallet(clientA.getWallet()-price);
 			deliveryJ.setWallet(deliveryJ.getWallet()+price);
-			
+			System.out.println("Delivery "+ deliveryJ.getFirstName() + " got paid "+ price +" pesos");
+			//TODO method that calculates the price with the weight of the order
 			System.out.println("The delivery is now at " + deliveryJ.getLocationOrigin());
 			
 			currentTime.whatTime();

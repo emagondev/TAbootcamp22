@@ -50,4 +50,14 @@ public class Person {
 		this.wallet = wallet;
 	}
 	
+//	@Override
+//	public String toString() {
+//		return String.format("[%s] %s, %i, %f", state, locationOrigin, locationDestination, orderlist, deliverId);
+//	}
+	
+	@Override
+	public String toString() {
+		return String.format(this.firstName, this.lastName, this.phone, this.wallet);
+	}
+	
 }

@@ -93,6 +93,6 @@ public class Client extends Person{
 	
 	@Override
 	public String toString() {
-		return String.format("[%s] %s, %i, %f", state, packageToDeliver, deliverId);
+		return String.format("[%s] %s, %i, %f", this.state, this.packageToDeliver, this.deliverId);
 	}
 }
