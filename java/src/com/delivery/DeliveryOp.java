@@ -50,6 +50,7 @@ public class DeliveryOp {
 		currentTime.whatTime();
 		System.out.println("START The delivery is now at " + delivery.getLocationOrigin());
 
+		//TODO method to calculate price
 		float price = 500f;
 		System.out.println(client.toString());
 		System.out.println("Asks delivery " + delivery.getFirstName() + " to take " + item.getItemName() + " to "
