@@ -11,7 +11,7 @@ public class Client extends Person {
 	int deliverId;
 	String location;
 	PackageToDeliver paquete = new PackageToDeliver();
-	
+
 	public Client(String firstName, String lastName, long phone, float wallet, PackageToDeliver packageToDeliver,
 			String state, int deliverId, String location) {
 
@@ -20,7 +20,7 @@ public class Client extends Person {
 		this.deliverId = deliverId;
 		this.location = location;
 		this.packageToDeliver = packageToDeliver;
-		
+
 	}
 
 	public String getState() {
@@ -83,6 +83,5 @@ public class Client extends Person {
 				&& Objects.equals(packageToDeliver, other.packageToDeliver) && Objects.equals(paquete, other.paquete)
 				&& Objects.equals(state, other.state);
 	}
-	
-	
+
 }

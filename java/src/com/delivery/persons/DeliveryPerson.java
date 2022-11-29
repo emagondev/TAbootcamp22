@@ -7,8 +7,6 @@ import com.delivery.world.Vehicle;
 
 public class DeliveryPerson extends Person {
 
-
-
 	private String state;
 	// waiting / on deliver
 	private String locationOrigin;
@@ -17,18 +15,17 @@ public class DeliveryPerson extends Person {
 	private Orders orderlist;
 	private Vehicle vehicle;
 
-	public DeliveryPerson(String firstName, String lastName, long phone, long wallet, String state, String locationOrigin, String locationDestination, Orders orderlist, int deliverId, Vehicle vehicle) {
-		
+	public DeliveryPerson(String firstName, String lastName, long phone, long wallet, String state,
+			String locationOrigin, String locationDestination, Orders orderlist, int deliverId, Vehicle vehicle) {
+
 		super(firstName, lastName, phone, wallet);
 		this.state = state;
 		this.locationOrigin = locationOrigin;
-		this.locationDestination =locationDestination;
+		this.locationDestination = locationDestination;
 //		setPackageToDeliver(packageList);
 		this.orderlist = orderlist;
 		this.deliverId = deliverId;
-		this.vehicle= vehicle;
-		
-		
+		this.vehicle = vehicle;
 
 	}
 
@@ -87,32 +84,28 @@ public class DeliveryPerson extends Person {
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
 	}
-	
 
-	
-	
-
-	public void getOrderData(){
+	public void getOrderData() {
 		/*
 		 * Checks if list order of packages is empty and prints what it contains
 		 * 
-		 * */
-		String name = this.getFirstName() +" "+ this.getLastName();
-		System.out.println("\n Delivery name: "+ name);
-		if(this.orderlist.getPackageList().size() == 0) {
+		 */
+		String name = this.getFirstName() + " " + this.getLastName();
+		System.out.println("\n Delivery name: " + name);
+		if (this.orderlist.getPackageList().size() == 0) {
 			System.out.println("List order is empty");
 		} else {
-		for(int i =0; i< this.orderlist.getPackageList().size();i++) {
-			System.out.println("|Item: " + this.orderlist.getPackageList().get(i).getItemName() + " |Weight: " + this.orderlist.getPackageList().get(i).getWeight() + "kgs  " + "|Client contact " + this.orderlist.getPackageList().get(i).getClientPhone() + "| Quantity: "+ this.orderlist.getPackageList().get(i).getQuantity() +"|");
-			System.out.println("-----------------------");
-		}
-			
-	
+			for (int i = 0; i < this.orderlist.getPackageList().size(); i++) {
+				System.out.println("|Item: " + this.orderlist.getPackageList().get(i).getItemName() + " |Weight: "
+						+ this.orderlist.getPackageList().get(i).getWeight() + "kgs  " + "|Client contact "
+						+ this.orderlist.getPackageList().get(i).getClientPhone() + "| Quantity: "
+						+ this.orderlist.getPackageList().get(i).getQuantity() + "|");
+				System.out.println("-----------------------");
 			}
+
+		}
 	}
 
-	
-	
 //	public void makeDelivery() {
 //		//TODO not used
 //		if (this.getLocationOrigin().compareTo(this.getLocationDestination()) != 0) {
@@ -121,14 +114,15 @@ public class DeliveryPerson extends Person {
 //		}
 //
 //	}
-	
-	
+
 	@Override
 	public String toString() {
-		return String.format("Delivery name: %s %s     Phone: %d, Wallet %.2f  State: %s Vehicle: %s Speed: %d", super.getFirstName(), super.getLastName(), super.getPhone(), super.getWallet(), state, this.getVehicle().getModelName(), this.getVehicle().getSpeed() );
-		
+		return String.format("Delivery name: %s %s     Phone: %d, Wallet %.2f  State: %s Vehicle: %s Speed: %d",
+				super.getFirstName(), super.getLastName(), super.getPhone(), super.getWallet(), state,
+				this.getVehicle().getModelName(), this.getVehicle().getSpeed());
+
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -151,8 +145,5 @@ public class DeliveryPerson extends Person {
 				&& Objects.equals(locationOrigin, other.locationOrigin) && Objects.equals(orderlist, other.orderlist)
 				&& Objects.equals(state, other.state) && Objects.equals(vehicle, other.vehicle);
 	}
-
-
-
 
 }

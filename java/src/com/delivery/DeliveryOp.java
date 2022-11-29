@@ -33,13 +33,9 @@ public class DeliveryOp {
 	public void oneDeliver() {
 //		System.err.println("-----"+PackageToDeliver.equals(packageOfClientA));
 
-
 //		deliveryJ.getOrderlist().addOrder(packageOfClientA);
 
 		deliverAPackage(flour, deliveryJ, clientA);
-
-
-
 
 		// add dummy items
 		PackageToDeliver[] listOfItems = { new PackageToDeliver("Item1", 1, 100000, 1, "Street 70"),
@@ -51,14 +47,15 @@ public class DeliveryOp {
 //		System.out.println(deliveryJ.getOrderData());
 
 	}
-	
+
 	public void deliverAPackage(PackageToDeliver item, DeliveryPerson delivery, Client client) {
 		currentTime.whatTime();
 		System.out.println("START The delivery is now at " + delivery.getLocationOrigin());
 
 		float price = 500f;
 		System.out.println(client.toString());
-		System.out.println("Asks delivery " + delivery.getFirstName() + " to take " + item.getItemName() + " to "+ item.getDestination());
+		System.out.println("Asks delivery " + delivery.getFirstName() + " to take " + item.getItemName() + " to "
+				+ item.getDestination());
 		makedelivery.addOrder(client, delivery, item);
 		System.err.println("Delivery order queue:");
 		delivery.getOrderData();
@@ -73,17 +70,15 @@ public class DeliveryOp {
 		System.out.println("Delivery order queue:");
 		delivery.getOrderData();
 		System.out.println("--------------------------------------------------------");
-		
+
 	}
-
-
 
 	public void changeWallets(DeliveryPerson d, Client c, float price) {
 
 		c.setWallet(clientA.getWallet() - price);
 		d.setWallet(deliveryJ.getWallet() + price);
 		System.out.println("\nDelivery " + d.getFirstName() + " got paid " + price + " pesos");
-		System.out.println("Now he has: "+ d.getWallet());
+		System.out.println("Now he has: " + d.getWallet());
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
 	}
 

@@ -4,29 +4,28 @@ import java.util.Iterator;
 
 import com.delivery.persons.Client;
 import com.delivery.persons.DeliveryPerson;
-import com.delivery.world.Time;
 
 public class MakeDelivery {
 
 	public MakeDelivery() {
 		// TODO Auto-generated constructor stub
-		
-		// argument: time, 
-		
+
+		// argument: time,
+
 	}
-	
-	public float calculatePrice(PackageToDeliver item){
+
+	public float calculatePrice(PackageToDeliver item) {
 		float amountPerKg = 350.00f;
 		float value = 0f;
 		value += item.getWeight() * amountPerKg;
 		return value;
-		
+
 	}
-	
+
 //	public void deliverAPackage(PackageToDeliver item, DeliveryPerson delivery, Client client, String location) {
 //		System.out.println("START The delivery is now at " + delivery.getLocationOrigin());
 //	}
-	
+
 	public void addOrder(Client client, DeliveryPerson delivery, PackageToDeliver item) {
 		/* TODO check if the item isn't already one the order */
 
@@ -53,6 +52,5 @@ public class MakeDelivery {
 
 		}
 	}
-	
 
 }
