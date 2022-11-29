@@ -7,7 +7,9 @@ public class ClientList {
 	private ArrayList<Client> clientList = new ArrayList<>();
 
 	public ClientList() {
-		// TODO Auto-generated constructor stub
+		
+		
+		// TODO - CLASS INCOMPLETE, NOT USED
 	
 	
 	/*

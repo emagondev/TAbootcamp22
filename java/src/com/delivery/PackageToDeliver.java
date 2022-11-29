@@ -18,6 +18,7 @@ public class PackageToDeliver {
 		this.weight = weight;
 		this.clientPhone = clientPhone;
 		this.setQuantity(quantity);
+		this.destination = destination;
 	}
 
 	public String getItemName() {

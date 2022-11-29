@@ -22,7 +22,7 @@ public class Time {
 	}
 
 	public void whatTime() {
-		System.out.println((this.hoursminute / 60) + " hs");
+		System.out.print((this.hoursminute / 60) + " hs: ");
 	}
 
 }

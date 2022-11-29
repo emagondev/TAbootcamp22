@@ -58,7 +58,7 @@ public class Client extends Person {
 
 	@Override
 	public String toString() {
-		return String.format("%n%nClient name: %s %s \n Phone: %d, Wallet %.2f\n State: %s%n%n", super.getFirstName(),
+		return String.format("%n%nClient name: %s %s - Phone: %d, Wallet %.2f - State: %s%n", super.getFirstName(),
 				super.getLastName(), super.getPhone(), super.getWallet(), state);
 	}
 
