@@ -31,9 +31,7 @@ public class DeliveryOp {
 	}
 
 	public void oneDeliver() {
-//		System.err.println("-----"+PackageToDeliver.equals(packageOfClientA));
 
-//		deliveryJ.getOrderlist().addOrder(packageOfClientA);
 
 		deliverAPackage(flour, deliveryJ, clientA);
 
@@ -44,7 +42,7 @@ public class DeliveryOp {
 		for (PackageToDeliver item : listOfItems) {
 			deliveryT.getOrderlist().addOrder(item);
 		}
-//		System.out.println(deliveryJ.getOrderData());
+
 
 	}
 
