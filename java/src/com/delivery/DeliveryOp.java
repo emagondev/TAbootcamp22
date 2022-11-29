@@ -1,7 +1,5 @@
 package com.delivery;
 
-import java.util.Iterator;
-
 import com.delivery.persons.*;
 import com.delivery.world.Car;
 import com.delivery.world.ElectricScooter;
