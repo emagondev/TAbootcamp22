@@ -1,8 +1,35 @@
 package com.delivery.persons;
 
+import java.util.Objects;
+
 import com.delivery.Orders;
+import com.delivery.world.Vehicle;
 
 public class DeliveryPerson extends Person {
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result
+				+ Objects.hash(deliverId, locationDestination, locationOrigin, orderlist, state, vehicle);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DeliveryPerson other = (DeliveryPerson) obj;
+		return deliverId == other.deliverId && Objects.equals(locationDestination, other.locationDestination)
+				&& Objects.equals(locationOrigin, other.locationOrigin) && Objects.equals(orderlist, other.orderlist)
+				&& Objects.equals(state, other.state) && Objects.equals(vehicle, other.vehicle);
+	}
+
 
 	private String state;
 	// waiting / on deliver
@@ -10,16 +37,29 @@ public class DeliveryPerson extends Person {
 	private String locationDestination;
 	private int deliverId;
 	private Orders orderlist;
+	//maybe vehicle ??
+	private Vehicle vehicle;
 
-	public DeliveryPerson(String firstName, String lastName, long phone, long wallet, String state,
-			String locationOrigin, String locationDestination, Orders orderlist, int deliverId) {
+	public DeliveryPerson(String firstName, 
+						String lastName, 
+						long phone, 
+						long wallet, 
+						String state,
+						String locationOrigin, 
+						String locationDestination, 
+						Orders orderlist, 
+						int deliverId,
+						Vehicle vehicle) {
 		super(firstName, lastName, phone, wallet);
-		setState(state);
-		setLocationOrigin(locationOrigin);
-		setLocationDestination(locationDestination);
+		this.state = state;
+		this.locationOrigin = locationOrigin;
+		this.locationDestination =locationDestination;
 //		setPackageToDeliver(packageList);
-		setOrderlist(orderlist);
-		setDeliverId(deliverId);
+		this.orderlist = orderlist;
+		this.deliverId = deliverId;
+		this.vehicle= vehicle;
+		
+		
 
 	}
 
@@ -71,25 +111,62 @@ public class DeliveryPerson extends Person {
 		this.orderlist = orderlist;
 	}
 
-	@Override
-	public String toString() {
-		return String.format("[%s] %s, %i, %f", state, locationOrigin, locationDestination, orderlist, deliverId);
+	public Vehicle getVehicle() {
+		return vehicle;
 	}
 
-	public String getOrderData() {
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
+	}
+	
+
+	
+	
+
+	public void getOrderData(){
+		if(this.orderlist.getPackageList().size() == 0) {
+			System.out.println("List order is empty");
+		} else {
+		for(int i =0; i< this.orderlist.getPackageList().size();i++) {
+			System.out.println("Package content: " + this.orderlist.getPackageList().get(i).getItemName() + " It weights: " + this.orderlist.getPackageList().get(i).getWeight() + "kgs \n" + "Client contact " + this.orderlist.getPackageList().get(i).getClientPhone() + " Quantity: "+ this.orderlist.getPackageList().get(i).getQuantity());
+			System.out.println("-+-+-+-+-+-+");
+		}
+			
+			/*
 		return "Package content: " + this.orderlist.getPackageList().get(0).getItemName() + "\nIt weights: "
 				+ this.orderlist.getPackageList().get(0).getWeight() + "kgs \n" + "Client contact "
 				+ this.orderlist.getPackageList().get(0).getClientPhone();
-
+		*/
+			}
 	}
 
+	
+	
 	public void makeDelivery() {
 //		if(this.getOrderlist().access(deliverId))
 		if (this.getLocationOrigin().compareTo(this.getLocationDestination()) != 0) {
 			this.locationOrigin = this.locationDestination;
-
+			
 		}
 
 	}
+	
+	
+	@Override
+	public String toString() {
+		return String.format("Delivery name: %s %s \n Phone: %d, Wallet %.2f\n State: %s Vehicle: %s", super.getFirstName(), super.getLastName(), super.getPhone(), super.getWallet(), state, this.getVehicle().getModelName() );
+		
+	}
+	/*
+	@Override
+	public int hashCode() {
+		int hash = 5;
+		hash = 89  hash + ((super.getFirstName() != null) ? super.getFirstName().hashCode()) : 0);
+		return hash;
+	}
+	*/
+
+
+
 
 }
