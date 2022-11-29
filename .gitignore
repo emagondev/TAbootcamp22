@@ -1,8 +1,8 @@
 /bin/
 .classpath
-.project
+*.project
 .settings
 .log
 .class
 /.idea/
-.iml
+*.iml
