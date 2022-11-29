@@ -78,59 +78,7 @@ public class DeliveryOp {
 		
 	}
 
-	/*
-	 * 
-	 * 
-	 * 
-	 * Methods
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
-	
-	//MOVED TO MakeDelivery class
-//	public void addOrder(Client client, DeliveryPerson delivery, PackageToDeliver item) {
-//		/* TODO check if the item isn't already one the order */
-//
-//		delivery.getOrderlist().addOrder(item);
-//
-//		System.out.println("Delivery " + delivery.getFirstName() + " is on his way to delivery" + item.getItemName()
-//				+ " to " + client.getLocation());
-//		delivery.setState("delivering");
-//		delivery.setWallet(makedelivery.calculatePrice(item));
-//		System.out.println(delivery.toString());
-//
-//	}
-//
-//	public void deleteOrder(Client client, DeliveryPerson delivery) {
-//		// Creating iterator object
-//		Iterator<com.delivery.PackageToDeliver> itr = delivery.getOrderlist().getPackageList().iterator();
-//		while (itr.hasNext()) {
-//
-//			// remove element if client phone == packageToDeliver phone
-//			PackageToDeliver x = (PackageToDeliver) itr.next();
-//			if (x.getClientPhone() == client.getPhone()) {
-//				itr.remove();
-//			}
-//
-//		}
-//	}
 
-//	public void startDeliver() {
-//		
-//	}
-	
-
-
-	public void iteratorOfOrders(DeliveryPerson deli) {
-		Orders orders = deli.getOrderlist();
-		PackageToDeliver[] arr = new PackageToDeliver[orders.length()];
-		arr = orders.toArray();
-		for (PackageToDeliver packageToDeliver : arr) {
-
-		}
-	}
 
 	public void changeWallets(DeliveryPerson d, Client c, float price) {
 
