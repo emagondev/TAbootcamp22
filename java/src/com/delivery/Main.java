@@ -1,6 +1,5 @@
 package com.delivery;
 
-//import com.delivery.persons.Client;
 
 public class Main {
 

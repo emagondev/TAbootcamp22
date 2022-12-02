@@ -80,26 +80,5 @@ public class PackageToDeliver {
 				&& Double.doubleToLongBits(weight) == Double.doubleToLongBits(other.weight);
 	}
 
-	/*
-	 * Override that dont work
-	 * 
-	 * @Override public boolean equals(Object o) { if (o == this) { return true; }
-	 * if (!(o instanceof PackageToDeliver)) { return false; }
-	 * 
-	 * // typecast o to Complex so that we can compare data members // Complex c =
-	 * (Complex) o; PackageToDeliver p = (PackageToDeliver)o;
-	 * 
-	 * return p.itemName.equals(this.itemName);
-	 * 
-	 * //ers and return accordingly // return Double.compare(re, c.re) == 0 //
-	 * Double.compare(im, c.im) == 0;
-	 */
-	/*
-	 * @Override public boolean equals(Object o){ if (this == o) return true; if (o
-	 * == null || getClass() != o.getClass()) return false; PackageToDeliver that =
-	 * (PackageToDeliver) o; return itemName.equals(that.itemName) && this.weight ==
-	 * that.weight && this.clientPhone == that.clientPhone && this.quantity ==
-	 * that.quantity; }
-	 */
 
 }

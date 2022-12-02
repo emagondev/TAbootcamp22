@@ -1,11 +1,11 @@
 package com.delivery.world;
 
 public class Time {
-	private int hoursminute;
+	private static int hoursminute;
 
 	public Time(int hoursminute) {
 		// Ttime in minutes
-		this.hoursminute = hoursminute;
+		Time.hoursminute = hoursminute;
 	}
 
 	public int getHoursminute() {
@@ -13,16 +13,16 @@ public class Time {
 	}
 
 	public void setHoursminute(int hoursminute) {
-		if ((this.hoursminute + hoursminute) > 1140) {
-			this.hoursminute = hoursminute - 1140;
-			this.hoursminute += hoursminute;
+		if ((Time.hoursminute + hoursminute) > 1140) {
+			Time.hoursminute = hoursminute - 1140;
+			Time.hoursminute += hoursminute;
 		} else {
-			this.hoursminute += hoursminute;
+			Time.hoursminute += hoursminute;
 		}
 	}
 
 	public void whatTime() {
-		System.out.print((this.hoursminute / 60) + " hs: ");
+		System.out.print((Time.hoursminute / 60) + " hs: ");
 	}
 
 }

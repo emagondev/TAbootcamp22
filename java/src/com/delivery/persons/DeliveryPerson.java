@@ -29,13 +29,6 @@ public class DeliveryPerson extends Person {
 
 	}
 
-//	public String getDeliveryPackage() {
-//		return DeliveryPackage;
-//	}
-//
-//	public void setDeliveryPackage(String deliveryPackage) {
-//		DeliveryPackage = deliveryPackage;
-//	}
 
 	public String getState() {
 		return state;
@@ -106,14 +99,6 @@ public class DeliveryPerson extends Person {
 		}
 	}
 
-//	public void makeDelivery() {
-//		//TODO not used
-//		if (this.getLocationOrigin().compareTo(this.getLocationDestination()) != 0) {
-//			this.locationOrigin = this.locationDestination;
-//			
-//		}
-//
-//	}
 
 	@Override
 	public String toString() {
