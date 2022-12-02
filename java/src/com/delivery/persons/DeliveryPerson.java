@@ -22,7 +22,6 @@ public class DeliveryPerson extends Person {
 		this.state = state;
 		this.locationOrigin = locationOrigin;
 		this.locationDestination = locationDestination;
-//		setPackageToDeliver(packageList);
 		this.orderlist = orderlist;
 		this.deliverId = deliverId;
 		this.vehicle = vehicle;
