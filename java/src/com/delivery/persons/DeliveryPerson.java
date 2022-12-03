@@ -1,8 +1,10 @@
 package com.delivery.persons;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import com.delivery.Orders;
+import com.delivery.PackageToDeliver;
 import com.delivery.world.Vehicle;
 
 public class DeliveryPerson extends Person {
@@ -12,17 +14,18 @@ public class DeliveryPerson extends Person {
 	private String locationOrigin;
 	private String locationDestination;
 	private int deliverId;
-	private Orders orderlist;
+//	private Orders orderlist;
+	private ArrayList<PackageToDeliver> itemList = new ArrayList<>();
 	private Vehicle vehicle;
 
 	public DeliveryPerson(String firstName, String lastName, long phone, long wallet, String state,
-			String locationOrigin, String locationDestination, Orders orderlist, int deliverId, Vehicle vehicle) {
+			String locationOrigin, String locationDestination, int deliverId, Vehicle vehicle) {
 
 		super(firstName, lastName, phone, wallet);
 		this.state = state;
 		this.locationOrigin = locationOrigin;
 		this.locationDestination = locationDestination;
-		this.orderlist = orderlist;
+//		this.orderlist = orderlist;
 		this.deliverId = deliverId;
 		this.vehicle = vehicle;
 
@@ -60,15 +63,14 @@ public class DeliveryPerson extends Person {
 	public void setDeliverId(int deliverId) {
 		this.deliverId = deliverId;
 	}
-
+/*
 	public Orders getOrderlist() {
 		return orderlist;
 	}
-
 	public void setOrderlist(Orders orderlist) {
 		this.orderlist = orderlist;
 	}
-
+*/
 	public Vehicle getVehicle() {
 		return vehicle;
 	}
@@ -76,12 +78,12 @@ public class DeliveryPerson extends Person {
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
 	}
-
+/*
 	public void getOrderData() {
-		/*
+		/* DEPRECATED
 		 * Checks if list order of packages is empty and prints what it contains
 		 * 
-		 */
+		 
 		String name = this.getFirstName() + " " + this.getLastName();
 		System.out.println("\n Delivery name: " + name);
 		if (this.orderlist.getPackageList().size() == 0) {
@@ -97,8 +99,37 @@ public class DeliveryPerson extends Person {
 
 		}
 	}
+*/
+	
+	public void getOrderData(){
+		System.err.println("Delivery " + this.getFirstName() + " " + this.getLastName() + " order queue:");
+		System.out.println("\n Delivery name: " + this.getFirstName() );
+		if (this.itemList.size() == 0) {
+			System.out.println("List order is empty");
+		} else {
+			for (PackageToDeliver packageToDeliver : itemList) {
+				System.out.println("|Item: " + packageToDeliver.getItemName() + " |Weight: "
+						+ packageToDeliver.getWeight() + "kgs  " + "|Client contact "
+						+ packageToDeliver.getClientPhone() + "| Quantity: "
+						+ packageToDeliver.getQuantity() + "|");
+				System.out.println("-----------------------");
+			}
+		}
+		
+	}
 
-
+	public void addPackage(PackageToDeliver item){
+		itemList.add(item);
+	}
+	
+	public void removePackage(PackageToDeliver item){
+		itemList.remove(item);
+	}
+	
+	public PackageToDeliver accessPackage(int i) {
+		return itemList.get(i);
+	}
+	
 	@Override
 	public String toString() {
 		return String.format("Delivery name: %s %s     Phone: %d, Wallet %.2f  State: %s Vehicle: %s Speed: %d",
@@ -112,7 +143,7 @@ public class DeliveryPerson extends Person {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result
-				+ Objects.hash(deliverId, locationDestination, locationOrigin, orderlist, state, vehicle);
+				+ Objects.hash(deliverId, locationDestination, locationOrigin, itemList, state, vehicle);
 		return result;
 	}
 
@@ -126,7 +157,7 @@ public class DeliveryPerson extends Person {
 			return false;
 		DeliveryPerson other = (DeliveryPerson) obj;
 		return deliverId == other.deliverId && Objects.equals(locationDestination, other.locationDestination)
-				&& Objects.equals(locationOrigin, other.locationOrigin) && Objects.equals(orderlist, other.orderlist)
+				&& Objects.equals(locationOrigin, other.locationOrigin) && Objects.equals(itemList, other.itemList)
 				&& Objects.equals(state, other.state) && Objects.equals(vehicle, other.vehicle);
 	}
 

@@ -6,11 +6,11 @@ import com.delivery.PackageToDeliver;
 
 public class Client extends Person {
 
-	PackageToDeliver packageToDeliver;
-	String state;
-	int deliverId;
-	String location;
-	PackageToDeliver paquete = new PackageToDeliver();
+	private PackageToDeliver packageToDeliver;
+	private String state;
+	private int deliverId;
+	private String location;
+	private PackageToDeliver paquete = new PackageToDeliver();
 
 	public Client(String firstName, String lastName, long phone, float wallet, PackageToDeliver packageToDeliver,
 			String state, int deliverId, String location) {

@@ -1,49 +1,37 @@
 package com.delivery;
 
+import java.util.Iterator;
+
 import com.delivery.persons.*;
 import com.delivery.world.Car;
 import com.delivery.world.ElectricScooter;
 import com.delivery.world.Time;
 import com.delivery.world.Vehicle;
 
-public class DeliveryOp {
+public class DeliveryService {
 	Time currentTime = new Time(800);
 	MakeDelivery makedelivery = new MakeDelivery();
 	// TODO each delivery needs an Orders object - fix
 	Orders orderlist = new Orders();
 	Orders orderlistTest = new Orders();
 
-	PackageToDeliver PackageToDeliver = new PackageToDeliver("Shoes", 1, 4123123, 1, "Street 70");
-	PackageToDeliver packageOfClientA = new PackageToDeliver("Shoes", 1, 4123123, 1, "Street 70");
-	PackageToDeliver shoes = new PackageToDeliver("Shoes", 1, 4123123, 1, "Street 50");
-	PackageToDeliver flour = new PackageToDeliver("Flour", 1, 4123123, 1, "Street 70");
-	PackageToDeliver trash = new PackageToDeliver("Bag of clothes", 2, 4123123, 1, "Street 70");
-
-	Client clientA = new Client("Client1", "Black", 4123123, 1000, packageOfClientA, "idle", 0, "rosario");
-
-	Vehicle carDeliA = new Car("Chevy", 0, 80, 120);
-	Vehicle carTest = new ElectricScooter("XiaomiTest", 0, 20, 50);
-
-	DeliveryPerson deliveryJ = new DeliveryPerson("John", "Doe", 12345, 500, "idle", "12 Street", "30 Street",
-			orderlist, 1, carDeliA);
-	DeliveryPerson deliveryTest = new DeliveryPerson("TestName", "TestLName", 8000000, 1, "Idle", "Street 0", null,
-			orderlistTest, 0, carTest);
-
-	public DeliveryOp() {
+	
+	public DeliveryService() {
 	}
 
 	public void oneDeliver() {
 
-		deliverAPackage(flour, deliveryJ, clientA);
+//		deliverAPackage(flour, deliveryJ, clientA);
 
 	}
 
-	public void deliveryTest() {
+	public void deliveryTest(DeliveryPerson delivery) {
 		PackageToDeliver[] listOfItems = { new PackageToDeliver("Item1", 1, 100000, 1, "Street 70"),
 				new PackageToDeliver("Item2", 1, 100000, 1, "Street 70"),
 				new PackageToDeliver("Item3", 2, 100000, 1, "Street 70") };
 		for (PackageToDeliver item : listOfItems) {
-			deliveryTest.getOrderlist().addOrder(item);
+			delivery.addPackage(item);
+//			deliveryTest.getOrderlist().addOrder(item);
 		}
 
 	}
@@ -57,14 +45,16 @@ public class DeliveryOp {
 		System.out.println(client.toString());
 		System.out.println("Asks delivery " + delivery.getFirstName() + " to take " + item.getItemName() + " to "
 				+ item.getDestination());
-		makedelivery.addOrder(client, delivery, item);
-		System.err.println("Delivery " + delivery.getFirstName() + " order queue:");
+		addOrder(client, delivery, item);
+		
 		delivery.getOrderData();
 		currentTime.setHoursminute(60);
 		currentTime.whatTime();
 		System.out.println(": Arrived");
+		
 		delivery.setLocationOrigin(item.getDestination());
-		makedelivery.deleteOrder(client, delivery);
+//		makedelivery.deleteOrder(client, delivery);
+		delivery.removePackage(item);
 		changeWallets(delivery, client, price);
 
 		// TODO method that calculates the price with the weight of the order
@@ -77,11 +67,51 @@ public class DeliveryOp {
 
 	public void changeWallets(DeliveryPerson d, Client c, float price) {
 
-		c.setWallet(clientA.getWallet() - price);
-		d.setWallet(deliveryJ.getWallet() + price);
+		c.setWallet(c.getWallet() - price);
+		d.setWallet(d.getWallet() + price);
 		System.out.println("\nDelivery " + d.getFirstName() + " got paid " + price + " pesos");
 		System.out.println("Now he has: " + d.getWallet() + "\n");
 
 	}
+	
+	public float calculatePrice(PackageToDeliver item) {
+		float amountPerKg = 350.00f;
+		float value = 0f;
+		value += item.getWeight() * amountPerKg;
+		return value;
+
+	}
+	
+	public void addOrder(Client client, DeliveryPerson delivery, PackageToDeliver item) {
+		/* TODO check if the item isn't already one the order */
+
+//		delivery.getOrderlist().addOrder(item);
+		delivery.addPackage(item);
+		System.out.println("Delivery " + delivery.getFirstName() + " is on his way to delivery" + item.getItemName()
+				+ " to " + item.getDestination());
+		delivery.setState("delivering");
+		delivery.setWallet(calculatePrice(item));
+//		System.out.println(delivery.toString());
+
+	}
+
+	/*
+	public void deleteOrder(Client client, DeliveryPerson delivery) {
+		// Creating iterator object
+		Iterator<com.delivery.PackageToDeliver> itr = delivery.getOrderlist().getPackageList().iterator();
+		while (itr.hasNext()) {
+
+			// remove element if client phone == packageToDeliver phone
+			PackageToDeliver x = (PackageToDeliver) itr.next();
+			if (x.getClientPhone() == client.getPhone()) {
+				itr.remove();
+			}
+
+		}
+		
+	}
+	*/
+	
+	
 
 }

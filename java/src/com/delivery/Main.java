@@ -1,11 +1,38 @@
 package com.delivery;
 
+import com.delivery.persons.Client;
+import com.delivery.persons.DeliveryPerson;
+import com.delivery.world.Car;
+import com.delivery.world.ElectricScooter;
+import com.delivery.world.Vehicle;
 
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		DeliveryOp delivery = new DeliveryOp();
+		
+		//initialize
+		PackageToDeliver PackageToDeliver = new PackageToDeliver("Shoes", 1, 4123123, 1, "Street 70");
+		PackageToDeliver packageOfClientA = new PackageToDeliver("Shoes", 1, 4123123, 1, "Street 70");
+		PackageToDeliver shoes = new PackageToDeliver("Shoes", 1, 4123123, 1, "Street 50");
+		PackageToDeliver flour = new PackageToDeliver("Flour", 1, 4123123, 1, "Street 70");
+		PackageToDeliver trash = new PackageToDeliver("Bag of clothes", 2, 4123123, 1, "Street 70");
+
+		Client clientA = new Client("Client1", "Black", 4123123, 1000, packageOfClientA, "idle", 0, "rosario");
+
+		Vehicle carDeliA = new Car("Chevy", 0, 80, 120);
+		Vehicle carTest = new ElectricScooter("XiaomiTest", 0, 20, 50);
+
+		DeliveryPerson deliveryJ = new DeliveryPerson("John", "Doe", 12345, 500, "idle", "12 Street", "30 Street",
+				 1, carDeliA);
+		DeliveryPerson deliveryTest = new DeliveryPerson("TestName", "TestLName", 8000000, 1, "Idle", "Street 0", null,
+				 0, carTest);
+
+	
+		
+		DeliveryService delivery = new DeliveryService();
+		delivery.deliverAPackage(shoes, deliveryJ, clientA);
+		
 		delivery.oneDeliver();
 
 	}
