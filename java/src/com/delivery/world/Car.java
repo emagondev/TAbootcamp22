@@ -15,6 +15,10 @@ public class Car extends Vehicle {
 	public int getCurrentFuel() {
 		return currentFuel;
 	}
+	
+	public void setCurrentFuel(int currentFuel) {
+		this.currentFuel = currentFuel;
+	}
 
 	@Override
 	public int hashCode() {
@@ -34,10 +38,6 @@ public class Car extends Vehicle {
 			return false;
 		Car other = (Car) obj;
 		return currentFuel == other.currentFuel;
-	}
-
-	public void setCurrentFuel(int currentFuel) {
-		this.currentFuel = currentFuel;
 	}
 
 	@Override

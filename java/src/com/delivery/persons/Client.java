@@ -1,6 +1,7 @@
 package com.delivery.persons;
 
 import java.util.Objects;
+import java.util.Scanner;
 
 import com.delivery.PackageToDeliver;
 
@@ -12,6 +13,16 @@ public class Client extends Person {
 	private String location;
 	private PackageToDeliver paquete = new PackageToDeliver();
 
+	public Client(){
+		super(null,null,0,0);
+		this.state=null;
+		this.packageToDeliver = null;
+		this.state = null;
+		this.deliverId = 0;
+		this.location = null;
+		
+	}
+	
 	public Client(String firstName, String lastName, long phone, float wallet, PackageToDeliver packageToDeliver,
 			String state, int deliverId, String location) {
 
@@ -56,10 +67,32 @@ public class Client extends Person {
 		this.deliverId = deliverID;
 	}
 
+	public void customizeClient(){
+		//(String firstName, String lastName, long phone, float wallet, PackageToDeliver packageToDeliver,
+//		String state, int deliverId, String location)
+		Scanner record = new Scanner(System.in);
+		System.out.println("First name: ");
+		String firstName = record.nextLine();
+		System.out.println("Last Name");
+		String lastName = record.nextLine();
+		System.out.println("Phone number:");
+		long phone = record.nextLong();
+		System.out.println("Money available: ");
+		float wallet = record.nextFloat();
+		record.nextLine();
+		System.out.println("Location: ");
+		String location = record.nextLine();
+		this.setFirstName(firstName);
+		this.setLastName(lastName);
+		this.setPhone(phone);
+		this.setWallet(wallet);
+		this.setLocation(location);
+	}
+	
 	@Override
 	public String toString() {
-		return String.format("%n%nClient name: %s %s - Phone: %d, Wallet %.2f - State: %s%n", super.getFirstName(),
-				super.getLastName(), super.getPhone(), super.getWallet(), state);
+		return String.format("%n%nClient name: %s %s - Phone: %d, Wallet %.2f - State: %s - Location: %s%n", super.getFirstName(),
+				super.getLastName(), super.getPhone(), super.getWallet(), state, location);
 	}
 
 	@Override

@@ -1,29 +1,19 @@
 package com.delivery;
 
-import java.util.Iterator;
 
 import com.delivery.persons.*;
-import com.delivery.world.Car;
-import com.delivery.world.ElectricScooter;
 import com.delivery.world.Time;
-import com.delivery.world.Vehicle;
 
 public class DeliveryService {
 	Time currentTime = new Time(800);
-	MakeDelivery makedelivery = new MakeDelivery();
 	// TODO each delivery needs an Orders object - fix
-	Orders orderlist = new Orders();
-	Orders orderlistTest = new Orders();
+
 
 	
 	public DeliveryService() {
 	}
 
-	public void oneDeliver() {
 
-//		deliverAPackage(flour, deliveryJ, clientA);
-
-	}
 
 	public void deliveryTest(DeliveryPerson delivery) {
 		PackageToDeliver[] listOfItems = { new PackageToDeliver("Item1", 1, 100000, 1, "Street 70"),
@@ -31,7 +21,6 @@ public class DeliveryService {
 				new PackageToDeliver("Item3", 2, 100000, 1, "Street 70") };
 		for (PackageToDeliver item : listOfItems) {
 			delivery.addPackage(item);
-//			deliveryTest.getOrderlist().addOrder(item);
 		}
 
 	}
@@ -85,7 +74,6 @@ public class DeliveryService {
 	public void addOrder(Client client, DeliveryPerson delivery, PackageToDeliver item) {
 		/* TODO check if the item isn't already one the order */
 
-//		delivery.getOrderlist().addOrder(item);
 		delivery.addPackage(item);
 		System.out.println("Delivery " + delivery.getFirstName() + " is on his way to delivery" + item.getItemName()
 				+ " to " + item.getDestination());
