@@ -14,7 +14,6 @@ public class DeliveryService {
 	}
 
 
-
 	public void deliveryTest(DeliveryPerson delivery) {
 		PackageToDeliver[] listOfItems = { new PackageToDeliver("Item1", 1, 100000, 1, "Street 70"),
 				new PackageToDeliver("Item2", 1, 100000, 1, "Street 70"),

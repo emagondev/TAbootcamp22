@@ -1,4 +1,5 @@
 package com.delivery;
+import java.util.ArrayList;
 import java.util.Scanner;
 import com.delivery.persons.Client;
 import com.delivery.persons.DeliveryPerson;
@@ -13,11 +14,10 @@ public class Main {
 	    Scanner myObj = new Scanner(System.in);  // Create a Scanner object
 	    System.out.println("Enter username");
 //	    String userName = myObj.nextLine();
-	    
+	    ArrayList<DeliveryPerson> listOfDeliveries = new ArrayList<>();
 	    
 		//initialize
 		//items
-		PackageToDeliver PackageToDeliver = new PackageToDeliver("Shoes", 1, 4123123, 1, "Street 70");
 		PackageToDeliver packageOfClientA = new PackageToDeliver("Shoes", 1, 4123123, 1, "Street 70");
 		PackageToDeliver shoes = new PackageToDeliver("Shoes", 1, 4123123, 1, "Street 50");
 		PackageToDeliver flour = new PackageToDeliver("Flour", 1, 4123123, 1, "Street 70");
@@ -26,9 +26,11 @@ public class Main {
 		//clients
 		Client clientA = new Client("Client1", "Black", 4123123, 1000, packageOfClientA, "idle", 0, "rosario");
 		Client clientCustom = new Client();
-		System.out.println(clientCustom.toString());
-		clientCustom.customizeClient();
-		System.out.println(clientCustom.toString());
+		
+		
+//		System.out.println(clientCustom.toString());
+//		clientCustom.customizeClient();
+//		System.out.println(clientCustom.toString());
 		
 		
 		//vehicles
@@ -40,7 +42,11 @@ public class Main {
 		DeliveryPerson deliveryJ = new DeliveryPerson("John", "Doe", 12345, 500, "idle", "12 Street", "30 Street",
 				 1, carDeliA);
 		DeliveryPerson deliveryTest = new DeliveryPerson("TestName", "TestLName", 8000000, 1, "Idle", "Street 0", null,
-				 0, null);
+				 0, carTest);
+		listOfDeliveries.add(deliveryJ);
+		listOfDeliveries.add(deliveryTest);
+		
+		System.out.println(listOfDeliveries.toString());
 
 	
 		

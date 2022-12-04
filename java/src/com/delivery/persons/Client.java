@@ -11,7 +11,7 @@ public class Client extends Person {
 	private String state;
 	private int deliverId;
 	private String location;
-	private PackageToDeliver paquete = new PackageToDeliver();
+
 
 	public Client(){
 		super(null,null,0,0);
@@ -99,7 +99,7 @@ public class Client extends Person {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(deliverId, location, packageToDeliver, paquete, state);
+		result = prime * result + Objects.hash(deliverId, location, packageToDeliver, state);
 		return result;
 	}
 
@@ -113,8 +113,7 @@ public class Client extends Person {
 			return false;
 		Client other = (Client) obj;
 		return deliverId == other.deliverId && Objects.equals(location, other.location)
-				&& Objects.equals(packageToDeliver, other.packageToDeliver) && Objects.equals(paquete, other.paquete)
-				&& Objects.equals(state, other.state);
+				&& Objects.equals(packageToDeliver, other.packageToDeliver) && Objects.equals(state, other.state);
 	}
 
 }
