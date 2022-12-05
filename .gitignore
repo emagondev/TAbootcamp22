@@ -1,0 +1,10 @@
+/bin/
+.classpath
+*.project
+.project
+.gitattributes
+.settings
+.log
+.class
+/.idea/
+*.iml

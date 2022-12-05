@@ -8,17 +8,24 @@ public class PackageToDeliver {
 	private long clientPhone;
 	private int quantity;
 	private String destination;
+	private int distanceInMeters;
 
 	public PackageToDeliver() {
-
+		this.itemName = null;
+		this.weight = 0;
+		this.clientPhone = 0;
+		this.quantity = 0;
+		this.destination = null;
 	}
 
-	public PackageToDeliver(String itemName, double weight, long clientPhone, int quantity, String destination) {
+	public PackageToDeliver(String itemName, double weight, long clientPhone, int quantity, String destination,
+			int distanceInMeters) {
 		this.itemName = itemName;
 		this.weight = weight;
 		this.clientPhone = clientPhone;
 		this.setQuantity(quantity);
 		this.destination = destination;
+		this.setDistanceInMeters(distanceInMeters);
 	}
 
 	public String getItemName() {
@@ -61,6 +68,14 @@ public class PackageToDeliver {
 		this.destination = destination;
 	}
 
+	public int getDistanceInMeters() {
+		return distanceInMeters;
+	}
+
+	public void setDistanceInMeters(int distanceInMeters) {
+		this.distanceInMeters = distanceInMeters;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(clientPhone, destination, itemName, quantity, weight);
@@ -79,6 +94,5 @@ public class PackageToDeliver {
 				&& Objects.equals(itemName, other.itemName) && quantity == other.quantity
 				&& Double.doubleToLongBits(weight) == Double.doubleToLongBits(other.weight);
 	}
-
 
 }

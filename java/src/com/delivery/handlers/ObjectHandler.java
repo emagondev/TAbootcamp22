@@ -2,30 +2,16 @@ package com.delivery.handlers;
 
 import java.util.Scanner;
 
+import com.delivery.PackageToDeliver;
 import com.delivery.persons.Client;
 
-public class Menu {
+public class ObjectHandler {
 
-	private String state = "notLogged"; // or logged
-
-	public Menu() {
+	public ObjectHandler() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public char recordOption() {
-		Scanner myObj = new Scanner(System.in);
-		char option = myObj.nextLine().charAt(0);
-		return option;
-	}
-
-	public void options() {
-		System.out.println("Choose an option");
-		System.out.println("A. Register client");
-		System.out.println("B. Add item");
-		System.out.println("C. Choose delivery tier");
-	}
-
-	public Client createClient() {
+	public Client customClient() {
 		// (String firstName, String lastName, long phone, float wallet,
 		// PackageToDeliver packageToDeliver,
 //		String state, int deliverId, String location)
@@ -40,24 +26,44 @@ public class Menu {
 		long phone = record.nextLong();
 		System.out.println("Money available: ");
 		float wallet = record.nextFloat();
-
+		record.nextLine();
+		System.out.println("Location");
+		String location = record.nextLine();
+		c.setFirstName(firstName);
+		c.setLastName(lastName);
+		c.setPhone(phone);
+		c.setWallet(wallet);
+		c.setLocation(location);
 		return c;
 	}
 
-	public void customItem() {
+	public PackageToDeliver customItem(Client client) {
 		// String itemName, double weight, long clientPhone, int quantity, String
 		// destination
+		PackageToDeliver i = new PackageToDeliver();
 		Scanner s = new Scanner(System.in);
 		System.out.println("Item name: ");
 		String itemName = s.nextLine();
 		System.out.println("Add weight:");
 		double wight = s.nextDouble();
-		System.out.println("Add phone:");
-		long phone = s.nextLong();
+//		System.out.println("Add phone:");
+//		long phone = s.nextLong();
+		long phone = client.getPhone();
 		System.out.println("Add quantity");
 		int quantity = s.nextInt();
+		System.out.println("Indicate distance in meters");
+		int distance = s.nextInt();
 		s.nextLine();
 		System.out.println("Add destination");
 		String destination = s.nextLine();
+
+		i.setItemName(itemName);
+		i.setWeight(wight);
+		i.setClientPhone(phone);
+		i.setWeight(wight);
+		i.setDestination(destination);
+		i.setDistanceInMeters(distance);
+		return i;
 	}
+
 }
