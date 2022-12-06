@@ -2,7 +2,8 @@ package com.delivery.persons;
 
 import java.util.Objects;
 
-public class Person {
+//abstract class
+public abstract class Person {
 
 	private String firstName;
 	private String lastName;
@@ -19,6 +20,10 @@ public class Person {
 		this.phone = phone;
 		this.wallet = wallet;
 	}
+
+	// abstract method
+	public abstract void waitDelivery();
+	// ----
 
 	public String getFirstName() {
 		return firstName;

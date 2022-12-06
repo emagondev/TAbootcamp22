@@ -2,11 +2,8 @@ package com.delivery;
 
 import com.delivery.persons.Client;
 import com.delivery.persons.DeliveryPerson;
-import com.delivery.world.Time;
 
 public class DeliveryService {
-	Time currentTime = new Time(800);
-	// TODO each delivery needs an Orders object - fix
 
 	public DeliveryService() {
 	}
@@ -22,7 +19,6 @@ public class DeliveryService {
 	}
 
 	public void deliverAPackage(PackageToDeliver item, DeliveryPerson delivery, Client client) {
-		currentTime.whatTime();
 		System.out.println("START The delivery is now at " + delivery.getLocationOrigin());
 
 		// TODO method to calculate price
@@ -33,8 +29,6 @@ public class DeliveryService {
 		addOrder(client, delivery, item);
 
 		delivery.getOrderData();
-		currentTime.setHoursminute(60);
-		currentTime.whatTime();
 		System.out.println(": Arrived");
 
 		delivery.setLocationOrigin(item.getDestination());
@@ -43,10 +37,6 @@ public class DeliveryService {
 		changeWallets(delivery, client, price);
 
 		// TODO method that calculates the price with the weight of the order
-//		System.out.println("The delivery is now at " + deliveryJ.getLocationOrigin());
-//		System.out.println("Delivery order queue:");
-//		delivery.getOrderData();
-//		System.out.println("-------------------------------------------------------3-");
 
 	}
 
@@ -75,22 +65,7 @@ public class DeliveryService {
 				+ " to " + item.getDestination());
 		delivery.setState("delivering");
 		delivery.setWallet(calculatePrice(item));
-//		System.out.println(delivery.toString());
 
 	}
-
-	/*
-	 * public void deleteOrder(Client client, DeliveryPerson delivery) { // Creating
-	 * iterator object Iterator<com.delivery.PackageToDeliver> itr =
-	 * delivery.getOrderlist().getPackageList().iterator(); while (itr.hasNext()) {
-	 * 
-	 * // remove element if client phone == packageToDeliver phone PackageToDeliver
-	 * x = (PackageToDeliver) itr.next(); if (x.getClientPhone() ==
-	 * client.getPhone()) { itr.remove(); }
-	 * 
-	 * }
-	 * 
-	 * }
-	 */
 
 }

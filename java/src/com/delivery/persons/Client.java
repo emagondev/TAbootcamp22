@@ -12,17 +12,16 @@ public class Client extends Person {
 	private int deliverId;
 	private String location;
 
-
-	public Client(){
-		super(null,null,0,0);
-		this.state=null;
+	public Client() {
+		super(null, null, 0, 0);
+		this.state = "idle";
 		this.packageToDeliver = null;
 		this.state = null;
 		this.deliverId = 0;
 		this.location = null;
-		
+
 	}
-	
+
 	public Client(String firstName, String lastName, long phone, float wallet, PackageToDeliver packageToDeliver,
 			String state, int deliverId, String location) {
 
@@ -67,8 +66,9 @@ public class Client extends Person {
 		this.deliverId = deliverID;
 	}
 
-	public void customizeClient(){
-		//(String firstName, String lastName, long phone, float wallet, PackageToDeliver packageToDeliver,
+	public void customizeClient() {
+		// (String firstName, String lastName, long phone, float wallet,
+		// PackageToDeliver packageToDeliver,
 //		String state, int deliverId, String location)
 		Scanner record = new Scanner(System.in);
 		System.out.println("First name: ");
@@ -88,11 +88,11 @@ public class Client extends Person {
 		this.setWallet(wallet);
 		this.setLocation(location);
 	}
-	
+
 	@Override
 	public String toString() {
-		return String.format("%n%nClient name: %s %s - Phone: %d, Wallet %.2f - State: %s - Location: %s%n", super.getFirstName(),
-				super.getLastName(), super.getPhone(), super.getWallet(), state, location);
+		return String.format("%n%nClient name: %s %s - Phone: %d, Wallet %.2f - State: %s - Location: %s%n",
+				super.getFirstName(), super.getLastName(), super.getPhone(), super.getWallet(), state, location);
 	}
 
 	@Override
@@ -114,6 +114,12 @@ public class Client extends Person {
 		Client other = (Client) obj;
 		return deliverId == other.deliverId && Objects.equals(location, other.location)
 				&& Objects.equals(packageToDeliver, other.packageToDeliver) && Objects.equals(state, other.state);
+	}
+
+	@Override
+	public void waitDelivery() {
+		this.state = "waiting";
+
 	}
 
 }

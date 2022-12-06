@@ -16,6 +16,15 @@ public class DeliveryPerson extends Person {
 	private ArrayList<PackageToDeliver> itemList = new ArrayList<>();
 	private Vehicle vehicle;
 
+	public DeliveryPerson() {
+		super(null, null, 0, 0);
+		this.state = null;
+		this.locationDestination = null;
+		this.locationDestination = null;
+		this.deliverId = 0;
+		this.vehicle = null;
+	}
+
 	public DeliveryPerson(String firstName, String lastName, long phone, long wallet, String state,
 			String locationOrigin, String locationDestination, int deliverId, Vehicle vehicle) {
 
@@ -60,10 +69,6 @@ public class DeliveryPerson extends Person {
 		this.deliverId = deliverId;
 	}
 
-	/*
-	 * public Orders getOrderlist() { return orderlist; } public void
-	 * setOrderlist(Orders orderlist) { this.orderlist = orderlist; }
-	 */
 	public Vehicle getVehicle() {
 		return vehicle;
 	}
@@ -71,24 +76,6 @@ public class DeliveryPerson extends Person {
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
 	}
-	/*
-	 * public void getOrderData() { /* DEPRECATED Checks if list order of packages
-	 * is empty and prints what it contains
-	 * 
-	 * 
-	 * String name = this.getFirstName() + " " + this.getLastName();
-	 * System.out.println("\n Delivery name: " + name); if
-	 * (this.orderlist.getPackageList().size() == 0) {
-	 * System.out.println("List order is empty"); } else { for (int i = 0; i <
-	 * this.orderlist.getPackageList().size(); i++) { System.out.println("|Item: " +
-	 * this.orderlist.getPackageList().get(i).getItemName() + " |Weight: " +
-	 * this.orderlist.getPackageList().get(i).getWeight() + "kgs  " +
-	 * "|Client contact " + this.orderlist.getPackageList().get(i).getClientPhone()
-	 * + "| Quantity: " + this.orderlist.getPackageList().get(i).getQuantity() +
-	 * "|"); System.out.println("-----------------------"); }
-	 * 
-	 * } }
-	 */
 
 	public void getOrderData() {
 		System.err.println("Delivery " + this.getFirstName() + " " + this.getLastName() + " order queue:");
@@ -111,7 +98,12 @@ public class DeliveryPerson extends Person {
 	}
 
 	public void removePackage(PackageToDeliver item) {
-		itemList.remove(item);
+		try {
+			itemList.remove(item);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println("Package " + item.getItemName() + " not found");
+		}
 	}
 
 	public PackageToDeliver accessPackage(int i) {
@@ -147,6 +139,11 @@ public class DeliveryPerson extends Person {
 		return deliverId == other.deliverId && Objects.equals(locationDestination, other.locationDestination)
 				&& Objects.equals(locationOrigin, other.locationOrigin) && Objects.equals(itemList, other.itemList)
 				&& Objects.equals(state, other.state) && Objects.equals(vehicle, other.vehicle);
+	}
+
+	@Override
+	public void waitDelivery() {
+		this.state = "working";
 	}
 
 }

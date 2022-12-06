@@ -3,7 +3,7 @@ package com.delivery;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.delivery.handlers.ObjectHandler;
+import com.delivery.handlers.ObjectCreator;
 import com.delivery.persons.Client;
 import com.delivery.persons.DeliveryPerson;
 import com.delivery.world.Car;
@@ -14,7 +14,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ObjectHandler objectHandler = new ObjectHandler();
+		ObjectCreator objectCreator = new ObjectCreator();
 		Scanner myObj = new Scanner(System.in); // Create a Scanner object
 		System.out.println("Enter username");
 //	    String userName = myObj.nextLine();
@@ -33,7 +33,7 @@ public class Main {
 
 //		System.out.println(clientCustom.toString());
 //		clientCustom.customizeClient();
-//		System.out.println(clientCustom.toString());
+		System.out.println(clientCustom.toString());
 		System.out.println("0000000000000000000000000000000000");
 		// vehicles
 		Vehicle carDeliA = new Car("Chevy", 0, 80, 120);
@@ -47,12 +47,12 @@ public class Main {
 				0, carTest);
 		listOfDeliveries.add(deliveryJ);
 		listOfDeliveries.add(deliveryTest);
+		deliveryJ.removePackage(trash);
 
 		System.out.println(listOfDeliveries.toString());
 		System.out.println("9999999999999999999999999999");
-		Client pepe = objectHandler.customClient();
+		objectCreator.customClient();
 
-		System.out.println(pepe.toString());
 		DeliveryService delivery = new DeliveryService();
 		// execution
 //		delivery.deliverAPackage(shoes, deliveryJ, clientA);
