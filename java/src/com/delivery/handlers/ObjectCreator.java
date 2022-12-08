@@ -37,7 +37,7 @@ public class ObjectCreator {
 			c.setPhone(phone);
 			c.setWallet(wallet);
 			c.setLocation(location);
-
+//			return c;
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.err.println("One or more parameters were incorect");

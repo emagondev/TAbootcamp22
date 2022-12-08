@@ -51,10 +51,14 @@ public class Main {
 
 		System.out.println(listOfDeliveries.toString());
 		System.out.println("9999999999999999999999999999");
-		objectCreator.customClient();
+		
+		//creation of custom client
+		Client custom1 = objectCreator.customClient();
+		System.out.println(custom1.toString());
+		
 
-		DeliveryService delivery = new DeliveryService();
 		// execution
+		DeliveryService delivery = new DeliveryService();
 //		delivery.deliverAPackage(shoes, deliveryJ, clientA);
 
 	}

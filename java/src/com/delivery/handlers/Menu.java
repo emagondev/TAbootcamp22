@@ -17,8 +17,11 @@ public class Menu {
 	}
 
 	public void options() {
+		Scanner s = new Scanner(System.in);
+		char option =' ';
 		System.out.println("Choose an option");
 		System.out.println("A. Register client");
+		option = s.nextLine().charAt(0);
 		System.out.println("B. Add item");
 		System.out.println("C. Choose delivery tier");
 	}
