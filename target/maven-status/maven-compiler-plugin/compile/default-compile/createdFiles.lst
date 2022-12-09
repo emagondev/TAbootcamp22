@@ -1,0 +1,12 @@
+com\solvd\delivery\PackageToDeliver.class
+com\solvd\delivery\persons\Client.class
+com\solvd\delivery\persons\DeliveryPerson.class
+com\solvd\delivery\handlers\ObjectCreator.class
+com\solvd\delivery\world\ElectricScooter.class
+com\solvd\delivery\handlers\Menu.class
+com\solvd\delivery\world\Car.class
+com\solvd\delivery\world\Vehicle.class
+com\solvd\delivery\world\Ubication.class
+com\solvd\delivery\persons\Person.class
+com\solvd\delivery\DeliveryService.class
+com\solvd\delivery\Main.class
