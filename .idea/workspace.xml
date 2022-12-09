@@ -5,35 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c98c71f3-6450-4fcf-a932-a9fb5c571b61" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/testest.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/.classpath" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/lib/log4j-1.2-api-2.19.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/lib/log4j-api-2.19.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/lib/log4j-core-2.19.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/com/HelloWorld.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/com/SortingAlg.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/com/delivery/DeliveryService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/com/delivery/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/com/delivery/PackageToDeliver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/com/delivery/handlers/Menu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/com/delivery/handlers/ObjectCreator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/com/delivery/interfaces/IDeliver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/com/delivery/persons/Client.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/com/delivery/persons/DeliveryPerson.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/com/delivery/persons/Person.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/com/delivery/world/Bicycle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/com/delivery/world/Car.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/com/delivery/world/ElectricScooter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/com/delivery/world/Ubication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/com/delivery/world/Vehicle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/module-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/delivery/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/delivery/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +45,7 @@
   </component>
   <component name="ProjectId" id="2IeuhfxyQt1Epcj17Ya6OxmsNWM" />
   <component name="ProjectViewState">
+    <option name="flattenPackages" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>

@@ -1,13 +1,9 @@
 package com.solvd.delivery;
 
-
+//imports
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-//import java.util.logging.Logger;
-
 import java.util.ArrayList;
-
-
 import com.solvd.delivery.handlers.ObjectCreator;
 import com.solvd.delivery.persons.Client;
 import com.solvd.delivery.persons.DeliveryPerson;
