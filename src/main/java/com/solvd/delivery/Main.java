@@ -4,6 +4,8 @@ package com.solvd.delivery;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
+import java.util.LinkedList;
+
 import com.solvd.delivery.handlers.ObjectCreator;
 import com.solvd.delivery.persons.Client;
 import com.solvd.delivery.persons.DeliveryPerson;
@@ -16,9 +18,13 @@ public class Main {
     static Logger loggerObj= LogManager.getLogger("Main");
     public static void main(String[] args) {
 
-        System.out.println("Hello world!");
-        loggerObj.debug("Printing toLogger");
+        LinkedList listOfClients = new LinkedList();
 
+        System.out.println("Hello world!");
+        loggerObj.info("Printing toLogger");
+        loggerObj.error("Printing failed");
+        loggerObj.debug("This is a debug");
+        loggerObj.fatal("this is a fatal");
 
         // TODO Auto-generated method stub
         ObjectCreator objectCreator = new ObjectCreator();
@@ -39,8 +45,8 @@ public class Main {
 
 //		System.out.println(clientCustom.toString());
 //		clientCustom.customizeClient();
-        System.out.println(clientCustom.toString());
-        System.out.println("0000000000000000000000000000000000");
+//        System.out.println(clientCustom.toString());
+
         // vehicles
         Vehicle carDeliA = new Car("Chevy", 0, 80, 120);
         Vehicle carTest = new ElectricScooter("XiaomiTest", 0, 20, 50);
@@ -56,12 +62,17 @@ public class Main {
         listOfDeliveries.add(deliveryTest);
         deliveryJ.removePackage(trash);
 
-        System.out.println(listOfDeliveries.toString());
-        System.out.println("9999999999999999999999999999");
+//        System.out.println(listOfDeliveries.toString());
+//        System.out.println("9999999999999999999999999999");
+
+
 
         //creation of custom client
-        Client custom1 = objectCreator.customClient();
-        System.out.println(custom1.toString());
+//        Client custom1 = objectCreator.customClient();
+//        System.out.println(custom1.toString());
+
+
+
 
 
         // execution

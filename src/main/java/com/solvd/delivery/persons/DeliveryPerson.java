@@ -12,6 +12,7 @@ public class DeliveryPerson extends Person{
     private String locationDestination;
     private int deliverId;
     private ArrayList<PackageToDeliver> itemList = new ArrayList<>();
+
     private Vehicle vehicle;
 
     public DeliveryPerson() {

@@ -1,5 +1,6 @@
 package com.solvd.delivery.handlers;
 
+import java.util.LinkedList;
 import java.util.Scanner;
 
 import com.solvd.delivery.PackageToDeliver;
@@ -117,6 +118,10 @@ public class ObjectCreator {
             System.err.println("One or more parameters were incorect");
         }
         return i;
+    }
+
+    public void addClient(LinkedList<Client> list){
+        list.add(customClient());
     }
 
 
