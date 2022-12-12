@@ -1,0 +1,4 @@
+10:42:39.104 [main] INFO  Main - Printing toLogger
+10:42:39.108 [main] ERROR Main - Printing failed
+10:42:39.109 [main] DEBUG Main - This is a debug
+10:42:39.109 [main] FATAL Main - this is a fatal

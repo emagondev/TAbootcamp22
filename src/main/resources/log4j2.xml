@@ -5,7 +5,7 @@
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
 <!--        file log-->
-        <File name="LogToFile" fileName="./.logs/testlog.log">
+        <File name="LogToFile" fileName="./logs/testlog.log">
         <PatternLayout>
             <Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Pattern>
         </PatternLayout>
