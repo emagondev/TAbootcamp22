@@ -1,6 +1,7 @@
 /bin/
 .classpath
 .logs/*
+.target
 .idea
 *.project
 .project
