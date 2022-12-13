@@ -12,6 +12,7 @@ import com.solvd.delivery.persons.DeliveryPerson;
 import com.solvd.delivery.world.Car;
 import com.solvd.delivery.world.ElectricScooter;
 import com.solvd.delivery.world.Vehicle;
+import org.apache.logging.log4j.util.SystemPropertiesPropertySource;
 
 public class Main {
 //    private static final Logger loggerObj=Logger.getLogger(Main.class.getName());
@@ -41,8 +42,10 @@ public class Main {
 
         // clients
         Client clientA = new Client("Client1", "Black", 4123123, 1000, packageOfClientA, "idle", 0, "rosario");
+        listOfClients.add(clientA);
         Client clientCustom = new Client();
-
+        listOfClients.add(clientCustom);
+        loggerObj.debug(listOfClients.toString());
 //		System.out.println(clientCustom.toString());
 //		clientCustom.customizeClient();
 //        System.out.println(clientCustom.toString());

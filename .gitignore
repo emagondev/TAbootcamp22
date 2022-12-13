@@ -8,8 +8,9 @@
 .settings
 .log
 .class
+pom.xml
 *.class
 *.iml
 /.idea/
 .lib
-
+/resources/
