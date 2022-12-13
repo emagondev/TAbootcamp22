@@ -13,4 +13,5 @@ pom.xml
 *.iml
 /.idea/
 .lib
-*/resources/*
+/resources/*
+/src/main/resources/*
