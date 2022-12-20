@@ -1,18 +1,19 @@
 package com.solvd.delivery.persons;
 
 import java.util.Objects;
+
 public abstract class Person {
 
     private String firstName;
     private String lastName;
-    private long phone;
+    private String phone;
     private float wallet;
 
     public Person() {
 
     }
 
-    public Person(String firstName, String lastName, long phone, float wallet) {
+    public Person(String firstName, String lastName, String phone, float wallet) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
@@ -39,11 +40,11 @@ public abstract class Person {
         this.lastName = lastName;
     }
 
-    public long getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(long phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

@@ -1,39 +1,42 @@
 package com.solvd.delivery.persons;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Objects;
 
 import com.solvd.delivery.PackageToDeliver;
+import com.solvd.delivery.interfaces.IPay;
 import com.solvd.delivery.world.Vehicle;
-public class DeliveryPerson extends Person{
+
+public class DeliveryPerson extends Person implements IPay {
     private String state;
     // waiting / on deliver
-    private String locationOrigin;
-    private String locationDestination;
-    private int deliverId;
-    private ArrayList<PackageToDeliver> itemList = new ArrayList<>();
+    private double[] locationCurrent;
 
+    private double[] locationDestination;
+    private int deliverId;
+
+    private LinkedList<PackageToDeliver> itemList = new LinkedList<>();
     private Vehicle vehicle;
 
     public DeliveryPerson() {
-        super(null, null, 0, 0);
+        super(null, null, "", 0);
         this.state = null;
-        this.locationDestination = null;
-        this.locationDestination = null;
+        this.locationCurrent = new double[2];
+        this.locationDestination = new double[2];
         this.deliverId = 0;
         this.vehicle = null;
     }
 
-    public DeliveryPerson(String firstName, String lastName, long phone, long wallet, String state,
-                          String locationOrigin, String locationDestination, int deliverId, Vehicle vehicle) {
+    public DeliveryPerson(String firstName, String lastName, String phone, long wallet, String state,
+                          double[] locationCurrent, double[] locationDestination, int deliverId, Vehicle vehicle) {
 
         super(firstName, lastName, phone, wallet);
         this.state = state;
-        this.locationOrigin = locationOrigin;
+        this.locationCurrent = locationCurrent;
         this.locationDestination = locationDestination;
         this.deliverId = deliverId;
         this.vehicle = vehicle;
-
     }
 
     public String getState() {
@@ -44,19 +47,31 @@ public class DeliveryPerson extends Person{
         this.state = state;
     }
 
-    public String getLocationOrigin() {
-        return locationOrigin;
+    public double[] getLocationCurrent() {
+
+        return locationCurrent;
     }
 
-    public void setLocationOrigin(String location) {
-        this.locationOrigin = location;
+    public double getLocationOriginX() {
+        return locationCurrent[0];
     }
 
-    public String getLocationDestination() {
+    public double getLocationOriginY() {
+        return locationCurrent[1];
+    }
+
+    public void setLocationCurrent(double[] location) {
+
+        this.locationCurrent = location;
+    }
+
+    public double[] getLocationDestination() {
+
         return locationDestination;
     }
 
-    public void setLocationDestination(String locationDestination) {
+    public void setLocationDestination(double[] locationDestination) {
+
         this.locationDestination = locationDestination;
     }
 
@@ -96,6 +111,10 @@ public class DeliveryPerson extends Person{
         itemList.add(item);
     }
 
+    public void addListOfPackages(LinkedList<PackageToDeliver> listToAdd) {
+        itemList.addAll(listToAdd);
+    }
+
     public void removePackage(PackageToDeliver item) {
         try {
             itemList.remove(item);
@@ -107,6 +126,10 @@ public class DeliveryPerson extends Person{
 
     public PackageToDeliver accessPackage(int i) {
         return itemList.get(i);
+    }
+
+    public LinkedList<PackageToDeliver> getItemList() {
+        return itemList;
     }
 
     @Override
@@ -122,7 +145,7 @@ public class DeliveryPerson extends Person{
         final int prime = 31;
         int result = super.hashCode();
         result = prime * result
-                + Objects.hash(deliverId, locationDestination, locationOrigin, itemList, state, vehicle);
+                + Objects.hash(deliverId, Arrays.hashCode(locationDestination), Arrays.hashCode(locationCurrent), itemList, state, vehicle);
         return result;
     }
 
@@ -136,7 +159,7 @@ public class DeliveryPerson extends Person{
             return false;
         DeliveryPerson other = (DeliveryPerson) obj;
         return deliverId == other.deliverId && Objects.equals(locationDestination, other.locationDestination)
-                && Objects.equals(locationOrigin, other.locationOrigin) && Objects.equals(itemList, other.itemList)
+                && Objects.equals(locationCurrent, other.locationCurrent) && Objects.equals(itemList, other.itemList)
                 && Objects.equals(state, other.state) && Objects.equals(vehicle, other.vehicle);
     }
 
@@ -145,4 +168,17 @@ public class DeliveryPerson extends Person{
         this.state = "working";
     }
 
+    @Override
+    public float calculatePrice(double distance) {
+        return 0;
+    }
+
+    @Override
+    public void getPaid(float cash) {
+        this.setWallet((this.getWallet() + cash));
+    }
+
+    @Override
+    public void pay(float cash) {
+    }
 }

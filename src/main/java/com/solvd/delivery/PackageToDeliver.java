@@ -1,4 +1,6 @@
 package com.solvd.delivery;
+
+import java.util.Arrays;
 import java.util.Objects;
 
 
@@ -7,27 +9,27 @@ public class PackageToDeliver {
 
     private String itemName;
     private double weight; // in kg
-    private long clientPhone;
+    private String clientPhone;
     private int quantity;
-    private String destination;
-    private int distanceInMeters;
+    private double[] destination;
 
     public PackageToDeliver() {
         this.itemName = null;
         this.weight = 0;
-        this.clientPhone = 0;
+        this.clientPhone = "";
         this.quantity = 0;
-        this.destination = null;
+        this.destination = new double[2];
+
+
     }
 
-    public PackageToDeliver(String itemName, double weight, long clientPhone, int quantity, String destination,
-                            int distanceInMeters) {
+    public PackageToDeliver(String itemName, double weight, String clientPhone, int quantity, double[] destination) {
         this.itemName = itemName;
         this.weight = weight;
         this.clientPhone = clientPhone;
         this.setQuantity(quantity);
         this.destination = destination;
-        this.setDistanceInMeters(distanceInMeters);
+
     }
 
     public String getItemName() {
@@ -46,11 +48,11 @@ public class PackageToDeliver {
         this.weight = weight;
     }
 
-    public long getClientPhone() {
+    public String getClientPhone() {
         return clientPhone;
     }
 
-    public void setClientPhone(long clientPhone) {
+    public void setClientPhone(String clientPhone) {
         this.clientPhone = clientPhone;
     }
 
@@ -62,39 +64,35 @@ public class PackageToDeliver {
         this.quantity = quantity;
     }
 
-    public String getDestination() {
+    public double[] getDestination() {
         return destination;
     }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public double getDestinationX() {
+        return destination[0];
     }
 
-    public int getDistanceInMeters() {
-        return distanceInMeters;
+    public double getDestinationY() {
+        return destination[1];
     }
 
-    public void setDistanceInMeters(int distanceInMeters) {
-        this.distanceInMeters = distanceInMeters;
+    public void setDestination(double[] destination) {
+        this.destination[0] = destination[0];
+        this.destination[1] = destination[1];
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PackageToDeliver that = (PackageToDeliver) o;
+        return Double.compare(that.weight, weight) == 0 && clientPhone == that.clientPhone && quantity == that.quantity && itemName.equals(that.itemName) && Arrays.equals(destination, that.destination);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(clientPhone, destination, itemName, quantity, weight);
+        int result = Objects.hash(itemName, weight, clientPhone, quantity);
+        result = 31 * result + Arrays.hashCode(destination);
+        return result;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        PackageToDeliver other = (PackageToDeliver) obj;
-        return clientPhone == other.clientPhone && Objects.equals(destination, other.destination)
-                && Objects.equals(itemName, other.itemName) && quantity == other.quantity
-                && Double.doubleToLongBits(weight) == Double.doubleToLongBits(other.weight);
-    }
-
 }
