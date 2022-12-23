@@ -48,11 +48,21 @@ public class Order {
 //        return OrderStatus.OrderStatus.ORDERED.isReady();
     }
 
+
     public void printTimeToDeliver() {
         System.out.println("Time to deliver is " +
                 Order.this.status.getTimeToDelivery());
 //                this.getStatus().getTimeToDelivery());
     }
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "status=" + status +
+                ", client=" + client +
+                ", deliveryPerson=" + deliveryPerson +
+                ", tier=" + tier +
+                '}';
+    }
     // Methods that set and get the status variable.
 }

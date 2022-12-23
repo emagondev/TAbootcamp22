@@ -1,6 +1,7 @@
 package com.solvd.delivery.world;
 
 import java.util.Objects;
+
 public class Vehicle {
 
     private String modelName;
@@ -46,5 +47,12 @@ public class Vehicle {
         this.speed -= decrement;
     }
 
-
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "modelName='" + modelName + '\'' +
+                ", speed=" + speed +
+                ", maxSpeed=" + maxSpeed +
+                '}';
+    }
 }

@@ -21,10 +21,17 @@ public class ElectricScooter extends Vehicle {
         this.battery = battery;
     }
 
+//    @Override
+//    public String toString() {
+//        return String.format("Scooter: %s, Current speed:%d, Max Speed: %d %n Current battery: %int liters",
+//                super.getModelName(), super.getSpeed(), this.battery);
+//    }
+
     @Override
     public String toString() {
-        return String.format("Scooter: %s, Current speed:%d, Max Speed: %d %n Current battery: %int liters",
-                super.getModelName(), super.getSpeed(), this.battery);
+        return "ElectricScooter{" +
+                "battery=" + battery +
+                '}';
     }
 
     @Override

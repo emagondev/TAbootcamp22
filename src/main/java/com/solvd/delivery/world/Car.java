@@ -1,7 +1,8 @@
 package com.solvd.delivery.world;
 
 import java.util.Objects;
-public class Car extends Vehicle{
+
+public class Car extends Vehicle {
 
     private int currentFuel;
 
@@ -39,10 +40,18 @@ public class Car extends Vehicle{
         return currentFuel == other.currentFuel;
     }
 
+//    @Override
+//    public String toString() {
+//        return String.format("Vehicle: %s, Current speed:%d, Max Speed: %d %n Current fuel: %int liters",
+//                super.getModelName(), super.getSpeed(), this.currentFuel);
+//
+//    }
+
+
     @Override
     public String toString() {
-        return String.format("Vehicle: %s, Current speed:%d, Max Speed: %d %n Current fuel: %int liters",
-                super.getModelName(), super.getSpeed(), this.currentFuel);
-
+        return "Car{" +
+                "currentFuel=" + currentFuel +
+                '}';
     }
 }

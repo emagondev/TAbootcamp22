@@ -133,7 +133,7 @@ public class DeliveryPerson extends Person implements IPay {
                 ", locationDestination=" + locationDestination +
                 ", deliverId=" + deliverId +
                 ", itemList=" + itemList +
-                ", vehicle=" + vehicle +
+                ", vehicle=" + vehicle.toString() +
                 '}';
     }
 
