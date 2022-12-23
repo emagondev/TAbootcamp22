@@ -5,6 +5,7 @@ package com.solvd.delivery;
 
 import com.solvd.delivery.enums.Order;
 import com.solvd.delivery.enums.OrderStatus;
+import com.solvd.delivery.world.Location;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,37 +22,36 @@ import com.solvd.delivery.world.Vehicle;
 import org.apache.logging.log4j.util.SystemPropertiesPropertySource;
 
 public class Main {
-    //    private static final Logger loggerObj=Logger.getLogger(Main.class.getName());
-    static Logger loggerObj = LogManager.getLogger("Main");
+    private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
         DeliveryService deliveryService = new DeliveryService();
-        LinkedList<Client> listOfClients = new LinkedList<>();
-        LinkedList<DeliveryPerson> listOfDeliveries = new LinkedList<>();
+
         Order order = new Order();
         Client user = new Client();
-        DeliveryPerson deliveryPerson = new DeliveryPerson();
-        ObjectCreator objectCreator = new ObjectCreator();
-
         // initialize---------------------
 //       adresses
-        double[] address1 = {3500, 400};
-        double[] address2 = {400, 124};
+        Location address1 = new Location(3500, 400);
+        Location address2 = new Location(400, 124);
+        Location address0 = new Location(0, 0);
         // vehicles---------------------
         Car vehicleTierIII = new Car("Ford", 0, 120, 100);
         ElectricScooter vehicleTierII = new ElectricScooter("XiaomiTest", 0, 80, 50);
         Vehicle vehicleTierI = new Vehicle("BTM", 0, 40);
         // deliveries----------------
-        double[] address0;
-        address0 = new double[]{0, 0};
-        DeliveryPerson deliveryA = new DeliveryPerson("John", "Doe", "12345", 500, "idle", address0, null, 0, vehicleTierIII);
-        DeliveryPerson deliveryB = new DeliveryPerson("William", "Jones", "482156", 200, "idle", address0, null, 0, vehicleTierII);
-        DeliveryPerson deliveryC = new DeliveryPerson("Peter", "Parker", "482156", 200, "idle", address0, null, 0, vehicleTierI);
 
+        DeliveryPerson deliveryA = new DeliveryPerson("John", "Doe", "12345", 500, address0, address0, "idle", 0,
+                vehicleTierIII);
+        DeliveryPerson deliveryB = new DeliveryPerson("William", "Jones", "482156", 200, address0, address0, "idle", 0,
+                vehicleTierII);
+        DeliveryPerson deliveryC = new DeliveryPerson("Peter", "Parker", "482156", 200, address0, address0, "idle", 0
+                , vehicleTierI);
+
+        DeliveryPerson a = new DeliveryPerson();
 //        adding deliveries to list
-        listOfDeliveries.add(deliveryA);
-        listOfDeliveries.add(deliveryB);
-        listOfDeliveries.add(deliveryC);
+        deliveryService.addDelivery(deliveryA);
+        deliveryService.addDelivery(deliveryB);
+        deliveryService.addDelivery(deliveryC);
 
         // items (not used)
         PackageToDeliver packageOfClientA = new PackageToDeliver("Shoes", 1, "4123123", 1, address1);
@@ -66,8 +66,8 @@ public class Main {
 //        listOfClients.add(clientCustom);
 //        loggerObj.debug(listOfClients.toString());
 
-        deliveryService.clientHandler(user, listOfDeliveries, order);
-        deliveryService.deliveryHandler(listOfDeliveries, order, user);
+        deliveryService.clientHandler(user);
+//        deliveryService.deliveryHandler(listOfDeliveries, order, user);
 
     }
 }

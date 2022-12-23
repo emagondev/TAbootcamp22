@@ -1,5 +1,7 @@
 package com.solvd.delivery;
 
+import com.solvd.delivery.world.Location;
+
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -11,19 +13,19 @@ public class PackageToDeliver {
     private double weight; // in kg
     private String clientPhone;
     private int quantity;
-    private double[] destination;
+    private Location destination;
 
     public PackageToDeliver() {
         this.itemName = null;
         this.weight = 0;
         this.clientPhone = "";
         this.quantity = 0;
-        this.destination = new double[2];
+        this.destination = new Location();
 
 
     }
 
-    public PackageToDeliver(String itemName, double weight, String clientPhone, int quantity, double[] destination) {
+    public PackageToDeliver(String itemName, double weight, String clientPhone, int quantity, Location destination) {
         this.itemName = itemName;
         this.weight = weight;
         this.clientPhone = clientPhone;
@@ -64,21 +66,20 @@ public class PackageToDeliver {
         this.quantity = quantity;
     }
 
-    public double[] getDestination() {
+    public Location getDestination() {
         return destination;
     }
 
     public double getDestinationX() {
-        return destination[0];
+        return destination.getCoordinateX();
     }
 
     public double getDestinationY() {
-        return destination[1];
+        return destination.getCoordinateY();
     }
 
-    public void setDestination(double[] destination) {
-        this.destination[0] = destination[0];
-        this.destination[1] = destination[1];
+    public void setDestination(Location location) {
+        this.destination = location;
     }
 
     @Override
@@ -86,13 +87,22 @@ public class PackageToDeliver {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PackageToDeliver that = (PackageToDeliver) o;
-        return Double.compare(that.weight, weight) == 0 && clientPhone == that.clientPhone && quantity == that.quantity && itemName.equals(that.itemName) && Arrays.equals(destination, that.destination);
+        return Double.compare(that.weight, weight) == 0 && quantity == that.quantity && itemName.equals(that.itemName) && clientPhone.equals(that.clientPhone) && destination.equals(that.destination);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(itemName, weight, clientPhone, quantity);
-        result = 31 * result + Arrays.hashCode(destination);
-        return result;
+        return Objects.hash(itemName, weight, clientPhone, quantity, destination);
+    }
+
+    @Override
+    public String toString() {
+        return "PackageToDeliver{" +
+                "itemName='" + itemName + '\'' +
+                ", weight=" + weight +
+                ", clientPhone='" + clientPhone + '\'' +
+                ", quantity=" + quantity +
+                ", destination=" + destination +
+                '}';
     }
 }

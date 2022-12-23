@@ -5,6 +5,7 @@ import com.solvd.delivery.enums.OrderStatus;
 import com.solvd.delivery.handlers.ObjectCreator;
 import com.solvd.delivery.persons.Client;
 import com.solvd.delivery.persons.DeliveryPerson;
+import com.solvd.delivery.world.Location;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,14 +17,19 @@ import static com.solvd.delivery.enums.DeliveryTier.*;
 
 public class DeliveryService {
     private static final Logger logger = LogManager.getLogger(DeliveryService.class);
+    Order orderStatus = new Order();
+    LinkedList<Client> listOfClients = new LinkedList<>();
+    LinkedList<DeliveryPerson> listOfDeliveries = new LinkedList<>();
+    ObjectCreator objectCreator = new ObjectCreator();
 
     public DeliveryService() {
     }
 
     public void deliveryTest(DeliveryPerson delivery) {
-        double[] address1 = {3500, 400};
-        double[] address2 = {400, 124};
-        double[] address3 = {1741, 1000};
+        Location address1 = new Location(3500, 400);
+        Location address2 = new Location(400, 124);
+        Location address3 = new Location(1740, 1000);
+
         PackageToDeliver[] listOfItems = {
                 new PackageToDeliver("Item1", 1, "100000", 1, address1),
                 new PackageToDeliver("Item2", 1, "100000", 1, address1),
@@ -31,17 +37,20 @@ public class DeliveryService {
         for (PackageToDeliver item : listOfItems) {
             delivery.addPackage(item);
         }
-
     }
 
+    public void addDelivery(DeliveryPerson d) {
+        listOfDeliveries.add(d);
+    }
 
-    public void deliveryHandler(LinkedList<DeliveryPerson> deliveryList, Order order, Client client) {
-        DeliveryPerson delivery = whoIsMyDelivery(deliveryList, client);
+    public void deliveryHandler(Order order, Client client) {
+//        listOfDeliveries
+        DeliveryPerson delivery = whoIsMyDelivery(listOfDeliveries, client);
 //      gives those items to a DeliveryPerson
         order.setStatus(OrderStatus.READY);
-        delivery.setLocationCurrent(client.getLocation());
-        logger.info("Client location" + Arrays.toString(client.getLocation()));
-        logger.info("Delivery location" + Arrays.toString(delivery.getLocationCurrent()));
+        delivery.setLocation(client.getLocation());
+        logger.info("Client location" + (client.getLocation().toString()));
+        logger.info("Delivery location" + (delivery.getLocation().toString()));
         //calculate the price with the location of the first item in the list
         changeWallets(
                 delivery,
@@ -58,10 +67,12 @@ public class DeliveryService {
 
     }
 
-    public void clientHandler(Client user, LinkedList<DeliveryPerson> listOfDeliveries, Order order) {
-        // Modifies the user, adds the item to be delivered to a list
-        //
-        ObjectCreator objectCreator = new ObjectCreator();
+    public Order clientHandler(Client user) {
+
+        //FIX SACAR ORDER AFUERA, hacer que lo devuelva
+
+        // Modifies the user, adds the item to be delivered to a list and adds the list to the selected delivery
+
         Scanner scan = new Scanner(System.in);
         LinkedList<PackageToDeliver> clientOrder = new LinkedList<>();
         char option = ' ';
@@ -78,7 +89,7 @@ public class DeliveryService {
         compare = Character.compare(option, '7');
 //            if (Character.compare(option, '1') == 0) {
         logger.info("Choose a destination");
-        double[] destination = objectCreator.recordCoordinates("Choose destination (coordinates)");
+        Location destination = objectCreator.recordCoordinates("Choose destination (coordinates)");
         System.out.println("Add item");
         char c = 'y';
         while (Character.compare(c, 'y') == 0) {
@@ -87,75 +98,66 @@ public class DeliveryService {
             c = scan.nextLine().charAt(0);
         }
         System.out.println("You are going to deliver:");
-        System.out.println(clientOrder.toString());
-        System.out.println("Choose a delivery speed tier: slow(40), medium(70), fast(120)");
-        int tier = scan.nextInt();
+        for (PackageToDeliver p : clientOrder) {
+            logger.info(p.getItemName());
+        }
+        System.out.println("Choose a delivery speed tier: A.slow B.medium C.fast");
+        int tier = 0;
+        String tierLetter = String.valueOf(scan.nextLine().charAt(0)).toLowerCase();
+        switch (tierLetter) {
+            case "a":
+                tier = 40;
+                break;
+            case "b":
+                tier = 70;
+                break;
+            case "c":
+                tier = 120;
+                break;
+            default:
+                throw new RuntimeException("Tier is not suported " + tierLetter);
 
-        //gets the desired delivery person, adds all the items the client ordered
-        listOfDeliveries.get(listOfDeliveries.indexOf(bringDeliveryP(listOfDeliveries, tier))).addListOfPackages(clientOrder);
-//        order.setStatus(Order.OrderStatus.ORDERED);
-        order.setStatus(OrderStatus.ORDERED);
+        }
+        ;
+        //fix Agregar excepcion cuando tier no esta en el rango
+        //gets the desired delivery person,
+//        List<DeliveryPerson> list = bringDeliveryP(listOfDeliveries, tier);
 
-//            } else {
-//                System.out.println("TO-DO");
-//                break;
-//            }
+        bringDeliveryP(tier).get(0).addListOfPackages(clientOrder);
+        //tambien se elimina la linea 127 (ahora comentada)
+//        adds all the items the client ordered
+//        list.get(0).addListOfPackages(clientOrder);
+        System.err.println(whoIsMyDelivery(listOfDeliveries, user));
+        orderStatus.setStatus(OrderStatus.ORDERED);
+        return orderStatus;
 
-//            System.out.println("2. See delivery cart");
-//        } while (compare != 0);
     }
 
-    public DeliveryPerson bringDeliveryP(LinkedList<DeliveryPerson> list, int chosenTier) {
+    public List<DeliveryPerson> bringDeliveryP(int chosenTier) {
         //given a chosen tier it returns a delivery person of that tier
-        ArrayList<DeliveryPerson> listOfDeliveriesRequested = new ArrayList<>();
+        LinkedList<DeliveryPerson> listOfDeliveriesRequested = new LinkedList<>();
+//        List<DeliveryPerson> listOfDeliveriesRequested2 = new ArrayList<>();
 
         //this block filters the deliveries which of that tier in a list
-
-        System.err.println(HIGH.value);
-
-
-        /*
-         *
-         *
-         *
-         *
-         * */
-
         if (isBetween(chosenTier, HIGH.value, MAXVALUE.value)) {
             //implement streams and lambda function
-            listOfDeliveriesRequested =
-                    (ArrayList<DeliveryPerson>) list.stream()
-                            .filter(d -> d.getVehicle().getMaxSpeed() > HIGH.value)
-                            .collect(Collectors.toList());
-        } else if (isBetween(chosenTier, MEDIUM.value, HIGH.value)) {
+            listOfDeliveriesRequested.addAll(listOfDeliveries.stream()
+                    .filter(d -> d.getVehicle().getMaxSpeed() > HIGH.value)
+                    .collect(Collectors.toList()));
+        } else if (isBetween(chosenTier, LOW.value, HIGH.value)) {
             //implement streams and lambda function
-            listOfDeliveriesRequested =
-                    (ArrayList<DeliveryPerson>) list.stream()
-                            .filter(d -> (d.getVehicle().getMaxSpeed() < HIGH.value && d.getVehicle().getMaxSpeed() > LOW.value))
-                            .collect(Collectors.toList());
-        } else if (isBetween(chosenTier, LOW.value, MEDIUM.value)) {
+            listOfDeliveriesRequested.addAll(listOfDeliveries.stream()
+                    .filter(d -> (d.getVehicle().getMaxSpeed() < HIGH.value && d.getVehicle().getMaxSpeed() > LOW.value))
+                    .collect(Collectors.toList()));
+        } else if (isBetween(chosenTier, MINVALUE.value, LOW.value)) {
             //implement streams and lambda function
-            listOfDeliveriesRequested =
-                    (ArrayList<DeliveryPerson>) list.stream()
-                            .filter(d -> d.getVehicle().getMaxSpeed() <= LOW.value)
-                            .collect(Collectors.toList());
-
+            listOfDeliveriesRequested.addAll(listOfDeliveries.stream()
+                    .filter(d -> d.getVehicle().getMaxSpeed() <= LOW.value)
+                    .collect(Collectors.toList()));
 
         }
 
-
-
-
-        /*
-         *
-         *
-         *
-         * */
-        //brings a random delivery person
-//        return listOfDeliveriesRequested.get((int) (Math.random() * ((listOfDeliveriesRequested.size()) + 1)));
-//        return listOfDeliveriesRequested.get((int) (Math.random() * ((listOfDeliveriesRequested.size()))));
-//        DeliveryPerson deli = listOfDeliveriesRequested.
-        return listOfDeliveriesRequested.get(0);
+        return listOfDeliveriesRequested;
 
     }
 
@@ -169,9 +171,9 @@ public class DeliveryService {
         double distanceInMeters;
 //      Math.sqrt(Math.pow(l.getX() - x, 2) + Math.pow(l.getY() - y, 2));
         distanceInMeters = Math.sqrt(Math.pow(
-                delivery.getLocationOriginX() - item.getDestinationX(), 2) +
+                delivery.getLocation().getCoordinateX() - item.getDestinationX(), 2) +
                 Math.pow(
-                        delivery.getLocationOriginY() - item.getDestinationY(), 2
+                        delivery.getLocation().getCoordinateY() - item.getDestinationY(), 2
                 ));
         return distanceInMeters;
     }

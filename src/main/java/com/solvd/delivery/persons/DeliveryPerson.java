@@ -6,35 +6,33 @@ import java.util.Objects;
 
 import com.solvd.delivery.PackageToDeliver;
 import com.solvd.delivery.interfaces.IPay;
+import com.solvd.delivery.world.Location;
 import com.solvd.delivery.world.Vehicle;
 
 public class DeliveryPerson extends Person implements IPay {
     private String state;
     // waiting / on deliver
-    private double[] locationCurrent;
-
-    private double[] locationDestination;
+    private Location locationDestination;
     private int deliverId;
 
     private LinkedList<PackageToDeliver> itemList = new LinkedList<>();
     private Vehicle vehicle;
 
     public DeliveryPerson() {
-        super(null, null, "", 0);
+        super(null, null, "", 0, new Location());
+        this.locationDestination = new Location();
         this.state = null;
-        this.locationCurrent = new double[2];
-        this.locationDestination = new double[2];
         this.deliverId = 0;
         this.vehicle = null;
     }
 
-    public DeliveryPerson(String firstName, String lastName, String phone, long wallet, String state,
-                          double[] locationCurrent, double[] locationDestination, int deliverId, Vehicle vehicle) {
+    public DeliveryPerson(String firstName, String lastName, String phone, long wallet, Location location,
+                          Location locationDestination, String state,
+                          int deliverId, Vehicle vehicle) {
 
-        super(firstName, lastName, phone, wallet);
-        this.state = state;
-        this.locationCurrent = locationCurrent;
+        super(firstName, lastName, phone, wallet, new Location());
         this.locationDestination = locationDestination;
+        this.state = state;
         this.deliverId = deliverId;
         this.vehicle = vehicle;
     }
@@ -47,30 +45,12 @@ public class DeliveryPerson extends Person implements IPay {
         this.state = state;
     }
 
-    public double[] getLocationCurrent() {
 
-        return locationCurrent;
-    }
-
-    public double getLocationOriginX() {
-        return locationCurrent[0];
-    }
-
-    public double getLocationOriginY() {
-        return locationCurrent[1];
-    }
-
-    public void setLocationCurrent(double[] location) {
-
-        this.locationCurrent = location;
-    }
-
-    public double[] getLocationDestination() {
-
+    public Location getLocationDestination() {
         return locationDestination;
     }
 
-    public void setLocationDestination(double[] locationDestination) {
+    public void setLocationDestination(Location locationDestination) {
 
         this.locationDestination = locationDestination;
     }
@@ -133,34 +113,28 @@ public class DeliveryPerson extends Person implements IPay {
     }
 
     @Override
-    public String toString() {
-        return String.format("Delivery name: %s %s     Phone: %d, Wallet %.2f  State: %s Vehicle: %s Speed: %d",
-                super.getFirstName(), super.getLastName(), super.getPhone(), super.getWallet(), state,
-                this.getVehicle().getModelName(), this.getVehicle().getSpeed());
-
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        DeliveryPerson that = (DeliveryPerson) o;
+        return deliverId == that.deliverId && state.equals(that.state) && locationDestination.equals(that.locationDestination) && itemList.equals(that.itemList) && vehicle.equals(that.vehicle);
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = super.hashCode();
-        result = prime * result
-                + Objects.hash(deliverId, Arrays.hashCode(locationDestination), Arrays.hashCode(locationCurrent), itemList, state, vehicle);
-        return result;
+        return Objects.hash(super.hashCode(), state, locationDestination, deliverId, itemList, vehicle);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (!super.equals(obj))
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        DeliveryPerson other = (DeliveryPerson) obj;
-        return deliverId == other.deliverId && Objects.equals(locationDestination, other.locationDestination)
-                && Objects.equals(locationCurrent, other.locationCurrent) && Objects.equals(itemList, other.itemList)
-                && Objects.equals(state, other.state) && Objects.equals(vehicle, other.vehicle);
+    public String toString() {
+        return "DeliveryPerson{" +
+                "state='" + state + '\'' +
+                ", locationDestination=" + locationDestination +
+                ", deliverId=" + deliverId +
+                ", itemList=" + itemList +
+                ", vehicle=" + vehicle +
+                '}';
     }
 
     @Override

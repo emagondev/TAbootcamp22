@@ -1,36 +1,35 @@
 package com.solvd.delivery.persons;
 
-import java.util.Arrays;
-import java.util.LinkedList;
+
 import java.util.Objects;
 import java.util.Scanner;
 
 import com.solvd.delivery.PackageToDeliver;
 import com.solvd.delivery.interfaces.IPay;
+import com.solvd.delivery.world.Location;
 
 public class Client extends Person implements IPay {
     private PackageToDeliver packageToDeliver;
     private String state;
     private int deliverId;
-    private double[] location;
 
 
     public Client() {
-        super(null, null, "", 0);
+        super(null, null, "", 0, new Location());
         this.state = "idle";
         this.packageToDeliver = null;
         this.state = null;
         this.deliverId = 0;
-        this.location = new double[2];
+
     }
 
-    public Client(String firstName, String lastName, String phone, float wallet, PackageToDeliver packageToDeliver,
-                  String state, int deliverId, double[] location) {
+    public Client(String firstName, String lastName, String phone, float wallet, Location location,
+                  PackageToDeliver packageToDeliver,
+                  String state, int deliverId) {
 
-        super(firstName, lastName, phone, wallet);
+        super(firstName, lastName, phone, wallet, location);
         this.state = state;
         this.deliverId = deliverId;
-        this.location = location;
         this.packageToDeliver = packageToDeliver;
     }
 
@@ -42,13 +41,6 @@ public class Client extends Person implements IPay {
         this.state = state;
     }
 
-    public void setLocation(double[] location) {
-        this.location = location;
-    }
-
-    public double[] getLocation() {
-        return location;
-    }
 
     public void setPackageToDeliver(PackageToDeliver packageToDeliver) {
         this.packageToDeliver = packageToDeliver;
@@ -88,35 +80,28 @@ public class Client extends Person implements IPay {
 //        this.setLocation(location);
 //    }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Client client = (Client) o;
+        return deliverId == client.deliverId && packageToDeliver.equals(client.packageToDeliver) && state.equals(client.state);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), packageToDeliver, state, deliverId);
+    }
+
     @Override
     public String toString() {
         return "Client{" +
                 "packageToDeliver=" + packageToDeliver +
                 ", state='" + state + '\'' +
                 ", deliverId=" + deliverId +
-                ", location=" + Arrays.toString(location) +
                 '}';
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = super.hashCode();
-        result = prime * result + Objects.hash(deliverId, Arrays.hashCode(location), packageToDeliver, state);
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (!super.equals(obj))
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Client other = (Client) obj;
-        return deliverId == other.deliverId && Objects.equals(location, other.location)
-                && Objects.equals(packageToDeliver, other.packageToDeliver) && Objects.equals(state, other.state);
     }
 
     @Override

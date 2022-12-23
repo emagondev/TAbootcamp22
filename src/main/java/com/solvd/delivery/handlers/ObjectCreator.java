@@ -6,6 +6,7 @@ import java.util.Scanner;
 import com.solvd.delivery.PackageToDeliver;
 import com.solvd.delivery.persons.Client;
 import com.solvd.delivery.persons.DeliveryPerson;
+import com.solvd.delivery.world.Location;
 
 public class ObjectCreator {
 
@@ -27,26 +28,24 @@ public class ObjectCreator {
             System.out.println("Money available: ");
             float wallet = record.nextFloat();
             record.nextLine();
-            double[] doubleArray = recordCoordinates("Imput your location (coordinates)");
+            Location location = recordCoordinates("Input your location (coordinates)");
 
 
             c.setFirstName(firstName);
             c.setLastName(lastName);
             c.setPhone(phone);
             c.setWallet(wallet);
-            c.setLocation(doubleArray);
+            c.setLocation(location);
 //			return c;
         } catch (Exception e) {
             // TODO: handle exception
-            System.err.println("One or more parameters were incorect");
+            System.err.println("One or more parameters were incorrect");
         }
         return c;
 
     }
 
     public void modifyClient(Client c) {
-        // (String firstName, String lastName, long phone, float wallet,
-        // PackageToDeliver packageToDeliver,
 //		String state, int deliverId, String location)
 
         Scanner record = new Scanner(System.in);
@@ -60,27 +59,23 @@ public class ObjectCreator {
             System.out.println("Money available: ");
             float wallet = record.nextFloat();
             record.nextLine();
-            double[] doubleArray = recordCoordinates("Imput your location (coordinates)");
+            Location location = recordCoordinates("Input your location (coordinates)");
 
             c.setFirstName(firstName);
             c.setLastName(lastName);
             c.setPhone(phone);
             c.setWallet(wallet);
-            c.setLocation(doubleArray);
+            c.setLocation(location);
 //			return c;
         } catch (Exception e) {
             // TODO: handle exception
-            System.err.println("One or more parameters were incorect");
+            System.err.println("One or more parameters were incorrect");
         }
 
     }
 
     public DeliveryPerson customDeliveryPerson() {
-        /*
-         * String firstName, String lastName, long phone, long wallet, String state,
-         * String locationOrigin, String locationDestination, int deliverId, Vehicle
-         * vehicle
-         */
+
         DeliveryPerson d = new DeliveryPerson();
         Scanner s = new Scanner(System.in);
 
@@ -95,20 +90,20 @@ public class ObjectCreator {
             System.out.println("Money available: ");
             float wallet = s.nextFloat();
             s.nextLine();
-            double[] doubleArray = recordCoordinates("Choose current location (coordinates)");
+            Location location = recordCoordinates("Choose current location (coordinates)");
             d.setFirstName(firstName);
             d.setLastName(lastName);
             d.setPhone(phone);
             d.setWallet(wallet);
-            d.setLocationCurrent(doubleArray);
+            d.setLocation(location);
 
         } catch (Exception e) {
-            System.err.println("One or more parameters were incorect");
+            System.err.println("One or more parameters were incorrect");
         }
         return d;
     }
 
-    public PackageToDeliver customItem(Client client, double[] destination) {
+    public PackageToDeliver customItem(Client client, Location destination) {
         // String itemName, double weight, long clientPhone, int quantity, String
         // destination
         PackageToDeliver i = new PackageToDeliver();
@@ -130,7 +125,7 @@ public class ObjectCreator {
             i.setWeight(wight);
             i.setDestination(destination);
         } catch (Exception e) {
-            System.err.println("One or more parameters were incorect");
+            System.err.println("One or more parameters were incorrect");
         }
         return i;
     }
@@ -139,7 +134,7 @@ public class ObjectCreator {
         list.add(customClient());
     }
 
-    public double[] recordCoordinates(String text) {
+    public Location recordCoordinates(String text) {
         Scanner s = new Scanner(System.in);
 //        System.out.println("Choose current location (coordinates)");
         System.out.println(text);
@@ -147,12 +142,11 @@ public class ObjectCreator {
         double locationX = s.nextDouble();
         System.out.println("Coordinate Y");
         double locationY = s.nextDouble();
-        double[] doubleArray;
-        doubleArray = new double[]{locationX, locationY};
-        return doubleArray;
+        Location location = new Location();
+        location.setCoordinateX(locationX);
+        location.setCoordinateY(locationY);
+        return location;
     }
-
-    ;
 
 
 }
