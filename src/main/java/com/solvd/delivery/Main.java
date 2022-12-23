@@ -23,18 +23,14 @@ public class Main {
         Order order = new Order();
         Client user = new Client();
         // initialize---------------------
-//       adresses
+//       addresses
         Location address1 = new Location(3500, 400);
-        Location address2 = new Location(400, 124);
         Location address0 = new Location(0, 0);
         // vehicles---------------------
         Car vehicleTierIII = new Car("Ford", 0, 120, 100);
         ElectricScooter vehicleTierII = new ElectricScooter("XiaomiTest", 0, 80, 50);
         Vehicle vehicleTierI = new Vehicle("BTM", 0, 40);
         // deliveries----------------
-
-
-//        adding deliveries to list
         deliveryService.addDelivery(new DeliveryPerson("John", "Doe", "12345", 500, address0, address0, "idle", 0,
                 vehicleTierIII));
         deliveryService.addDelivery(new DeliveryPerson("William", "Jones", "482156", 200, address0, address0, "idle", 0,
@@ -48,12 +44,6 @@ public class Main {
         PackageToDeliver flour = new PackageToDeliver("Flour", 1, "4123123", 1, address1);
         PackageToDeliver trash = new PackageToDeliver("Bag of clothes", 2, "4123123", 1, address1);
 
-        // clients
-//        Client clientA = new Client("Client1", "Black", 4123123, 1000, packageOfClientA, "idle", 0, "rosario");
-//        listOfClients.add(clientA);
-//        Client clientCustom = new Client();
-//        listOfClients.add(clientCustom);
-//        loggerObj.debug(listOfClients.toString());
 
         deliveryService.clientHandler(user, order);
         deliveryService.deliveryHandler(order, user);
