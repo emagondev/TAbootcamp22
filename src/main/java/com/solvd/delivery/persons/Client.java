@@ -111,7 +111,7 @@ public class Client extends Person implements IPay {
     }
 
     @Override
-    public float calculatePrice(double distance) {
+    public float calculatePrice(double distance, int tier) {
         return 0;
     }
 

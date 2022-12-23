@@ -143,8 +143,9 @@ public class DeliveryPerson extends Person implements IPay {
     }
 
     @Override
-    public float calculatePrice(double distance) {
-        return 0;
+    public float calculatePrice(double distance, int tier) {
+
+        return (float) (distance * 20 + 50 * tier);
     }
 
     @Override

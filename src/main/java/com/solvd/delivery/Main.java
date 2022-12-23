@@ -3,23 +3,16 @@ package com.solvd.delivery;
 //imports
 
 
-import com.solvd.delivery.enums.Order;
-import com.solvd.delivery.enums.OrderStatus;
+import com.solvd.delivery.handlers.Order;
 import com.solvd.delivery.world.Location;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-
-import com.solvd.delivery.handlers.ObjectCreator;
-import com.solvd.delivery.PackageToDeliver;
 import com.solvd.delivery.persons.Client;
 import com.solvd.delivery.persons.DeliveryPerson;
 import com.solvd.delivery.world.Car;
 import com.solvd.delivery.world.ElectricScooter;
 import com.solvd.delivery.world.Vehicle;
-import org.apache.logging.log4j.util.SystemPropertiesPropertySource;
 
 public class Main {
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
@@ -66,8 +59,8 @@ public class Main {
 //        listOfClients.add(clientCustom);
 //        loggerObj.debug(listOfClients.toString());
 
-        deliveryService.clientHandler(user);
-//        deliveryService.deliveryHandler(listOfDeliveries, order, user);
+        deliveryService.clientHandler(user, order);
+        deliveryService.deliveryHandler(order, user);
 
     }
 }
