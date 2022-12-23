@@ -45,12 +45,9 @@ public class DeliveryService {
     }
 
     public void deliveryHandler(Order order, Client client) {
-//        listOfDeliveries
-       
-//      gives those items to a DeliveryPerson
         order.setStatus(OrderStatus.READY);
         order.getDeliveryPerson().setLocation(client.getLocation());
-//        delivery.setLocation(client.getLocation());
+
         LOGGER.info("Client location" + (client.getLocation().toString()));
         LOGGER.info("Delivery location" + (order.getDeliveryPerson().getLocation().toString()));
         //calculate the price with the location of the first item in the list
@@ -62,16 +59,14 @@ public class DeliveryService {
         );
 
         //use lambda to delete all the packages in the DeliveryPerson list with the same phone as the client
-
         order.getDeliveryPerson().getItemList().removeIf(p -> p.getClientPhone().compareTo(client.getPhone()) == 0);
         order.setStatus(OrderStatus.DELIVERED);
         LOGGER.info("The delivery was completed");
 
     }
 
-    public Order clientHandler(Client user, Order order) {
+    public void clientHandler(Client user, Order order) {
 
-        //FIX SACAR ORDER AFUERA, hacer que lo devuelva
 
         // Modifies the user, adds the item to be delivered to a list and adds the list to the selected delivery
 
@@ -134,9 +129,6 @@ public class DeliveryService {
             order.setTier(2);
         } else if (tier >= MINVALUE.value && tier <= LOW.value) {
             //implement streams and lambda function
-//            listOfDeliveries.stream()
-//                    .filter(d -> d.getVehicle().getMaxSpeed() <= LOW.value)
-//                    .collect(Collectors.toList()).get(0).addListOfPackages(clientOrder);
             order.setDeliveryPerson(listOfDeliveries.stream()
                     .filter(d -> d.getVehicle().getMaxSpeed() <= LOW.value)
                     .collect(Collectors.toList()).get(0));
@@ -144,57 +136,14 @@ public class DeliveryService {
             order.setTier(1);
         }
 
-
-        //FIX------------ Se comento las 5 lineas inmediatamente debajo
-//        bringDeliveryP(tier).get(0).addListOfPackages(clientOrder);
-        //tambien se elimina la linea 127 (ahora comentada)
-//        adds all the items the client ordered
-//        list.get(0).addListOfPackages(clientOrder);
-//        System.err.println(whoIsMyDelivery(listOfDeliveries, user));
         order.setClient(user);
         orderStatus.setStatus(OrderStatus.ORDERED);
         System.out.println(
                 order.getDeliveryPerson().toString());
-        return order;
-
     }
 
     public void addOrder(Order order) {
         orderRecord.add(order);
-    }
-
-
-    public List<DeliveryPerson> bringDeliveryP(int chosenTier) {
-        //given a chosen tier it returns a delivery person of that tier
-        LinkedList<DeliveryPerson> listOfDeliveriesRequested = new LinkedList<>();
-//        List<DeliveryPerson> listOfDeliveriesRequested2 = new ArrayList<>();
-
-        //this block filters the deliveries which of that tier in a list
-        if (isBetween(chosenTier, HIGH.value, MAXVALUE.value)) {
-            //implement streams and lambda function
-            listOfDeliveriesRequested.addAll(listOfDeliveries.stream()
-                    .filter(d -> d.getVehicle().getMaxSpeed() > HIGH.value)
-                    .collect(Collectors.toList()));
-        } else if (isBetween(chosenTier, LOW.value, HIGH.value)) {
-            //implement streams and lambda function
-            listOfDeliveriesRequested.addAll(listOfDeliveries.stream()
-                    .filter(d -> (d.getVehicle().getMaxSpeed() < HIGH.value && d.getVehicle().getMaxSpeed() > LOW.value))
-                    .collect(Collectors.toList()));
-        } else if (isBetween(chosenTier, MINVALUE.value, LOW.value)) {
-            //implement streams and lambda function
-            listOfDeliveriesRequested.addAll(listOfDeliveries.stream()
-                    .filter(d -> d.getVehicle().getMaxSpeed() <= LOW.value)
-                    .collect(Collectors.toList()));
-
-        }
-
-        return listOfDeliveriesRequested;
-
-    }
-
-    //    public int bringDeliverySelectedTier()
-    public static boolean isBetween(int x, int lower, int upper) {
-        return lower <= x && x < upper;
     }
 
     public double distanceCalculator(DeliveryPerson delivery, PackageToDeliver item) {
@@ -216,20 +165,4 @@ public class DeliveryService {
         LOGGER.info("Now he has: " + d.getWallet());
 
     }
-
-    public DeliveryPerson whoIsMyDelivery(LinkedList<DeliveryPerson> list, Client client) {
-        //filters the delivery who has a package with the phone of the client
-        ArrayList<DeliveryPerson> myDeliveryList = new ArrayList<>();
-        try {
-            DeliveryPerson myDelivery =
-                    list.stream().filter(deliveryPerson -> deliveryPerson.getItemList().get(0).getClientPhone().compareTo(client.getPhone()) == 0).collect(Collectors.toList()).get(0);
-
-            myDeliveryList.add(myDelivery);
-        } catch (Exception e) {
-            LOGGER.info("Something went wrong at whoIsMyDelivery");
-        }
-
-        return myDeliveryList.get(0);
-    }
-
 }

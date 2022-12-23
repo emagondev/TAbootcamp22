@@ -33,18 +33,14 @@ public class Main {
         Vehicle vehicleTierI = new Vehicle("BTM", 0, 40);
         // deliveries----------------
 
-        DeliveryPerson deliveryA = new DeliveryPerson("John", "Doe", "12345", 500, address0, address0, "idle", 0,
-                vehicleTierIII);
-        DeliveryPerson deliveryB = new DeliveryPerson("William", "Jones", "482156", 200, address0, address0, "idle", 0,
-                vehicleTierII);
-        DeliveryPerson deliveryC = new DeliveryPerson("Peter", "Parker", "482156", 200, address0, address0, "idle", 0
-                , vehicleTierI);
 
-        DeliveryPerson a = new DeliveryPerson();
 //        adding deliveries to list
-        deliveryService.addDelivery(deliveryA);
-        deliveryService.addDelivery(deliveryB);
-        deliveryService.addDelivery(deliveryC);
+        deliveryService.addDelivery(new DeliveryPerson("John", "Doe", "12345", 500, address0, address0, "idle", 0,
+                vehicleTierIII));
+        deliveryService.addDelivery(new DeliveryPerson("William", "Jones", "482156", 200, address0, address0, "idle", 0,
+                vehicleTierII));
+        deliveryService.addDelivery(new DeliveryPerson("Peter", "Parker", "482156", 200, address0, address0, "idle", 0
+                , vehicleTierI));
 
         // items (not used)
         PackageToDeliver packageOfClientA = new PackageToDeliver("Shoes", 1, "4123123", 1, address1);
